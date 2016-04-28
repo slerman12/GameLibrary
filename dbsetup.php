@@ -2,7 +2,7 @@
 // File: dbsetup.php
 // Purpose: initialize database handle ($db)
 // Modified: lerman / 2016-04-28
-$dbtype = 'pgsql'; $dbhost = 'localhost'; $dbname = 'koomen_db';
+$dbtype = 'pgsql'; $dbhost = 'localhost'; $dbname = 'slerman_db';
 $dsn = "$dbtype:host=$dbhost;dbname=$dbname";
 $dbuser = 'slerman'; $dbpass = 'gamelibrary';
 try {

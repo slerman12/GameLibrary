@@ -3,7 +3,7 @@
 // Purpose: demo use of database handle ($db)
 require_once ('./dbsetup.php');
 try {
-    $rslt = $db->query('SELECT COUNT(*) FROM item');
+    $rslt = $db->query('SELECT COUNT(*) FROM items');
     $cnt = $rslt ? $rslt->fetchColumn() : -1;
 }
 catch (PDOException $e) {
