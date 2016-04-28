@@ -148,3 +148,62 @@ h6, .h6 {
 .gamelibrary-footer p:last-child {
   margin-bottom: 0;
 }
+
+.list-main {
+  margin-top: 60px;
+}
+
+#custom-search-input {
+  margin:30px 0;
+  padding: 0;
+}
+
+#custom-search-input .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#custom-search-input button {
+  border: 0;
+  background: none;
+  /** belows styles are working good */
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -28px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color:#428bca;
+}
+
+.search-query:focus + button {
+  z-index: 3;
+}
+
+.list-table .fa-times:hover{
+  color: #7b0000;
+}
+
+.insert-button{
+  position: absolute;
+  /*margin: 260px 200px;*/
+  right: -60px;
+  top: 140px;
+  z-index: 10;
+  border-radius: 100%;
+}
+
+.insert-button .fa{
+  font-size: 50px;
+}

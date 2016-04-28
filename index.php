@@ -1,15 +1,7 @@
 <?php
 // File: index.php
-// Purpose: demo use of database handle ($db)
+// Purpose: home page
 require_once ('./dbsetup.php');
-try {
-    $rslt = $db->query('SELECT COUNT(*) FROM items');
-    $cnt = $rslt ? $rslt->fetchColumn() : -1;
-}
-catch (PDOException $e) {
-    print "DB Query Error : " . $e->getMessage();
-    die();
-}
 ?> <html>
 <head>
     <title>Game Library</title>
@@ -30,12 +22,12 @@ catch (PDOException $e) {
 <div class="gamelibrary-masthead">
     <div class="container">
         <nav class="gamelibrary-nav">
-            <a class="gamelibrary-nav-item active" href="#">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
+            <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="#">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="#">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="#">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="#">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
             </div>
         </nav>
     </div>
@@ -61,10 +53,10 @@ catch (PDOException $e) {
             <div class="sidebar-module">
                 <h4>Lists</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">Sam - RelationName</a></li>
-                    <li><a href="#">Cinthia - RelationName</a></li>
-                    <li><a href="#">Rodrigo - RelationName</a></li>
-                    <li><a href="#">Lee - RelationName</a></li>
+                    <li><a href="./list.php?who=Sam">Sam - Platforms</a></li>
+                    <li><a href="./list.php?who=Cinthia">Cinthia - RelationName</a></li>
+                    <li><a href="./list.php?who=Rodrigo">Rodrigo - RelationName</a></li>
+                    <li><a href="./list.php?who=Lee">Lee - RelationName</a></li>
                 </ol>
             </div>
         </div><!-- /.gamelibrary-sidebar -->
