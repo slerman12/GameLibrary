@@ -12,7 +12,7 @@ catch (PDOException $e) {
 }
 ?> <html>
 <head>
-    <title>DB Demo</title>
+    <title>Game Library</title>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!-- BOOTSTRAP Latest compiled and minified CSS -->
