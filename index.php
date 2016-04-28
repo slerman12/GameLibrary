@@ -23,14 +23,14 @@ catch (PDOException $e) {
 
     <!-- BOOTSTRAP Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 <div class="gamelibrary-masthead">
     <div class="container">
         <nav class="gamelibrary-nav">
-            <a class="gamelibrary-nav-item active" href="#">Home</a>
+            <a class="gamelibrary-nav-item active" href="#">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
                 <a class="gamelibrary-nav-item" href="#">Sam's List</a>
                 <a class="gamelibrary-nav-item" href="#">Cinthia's List</a>
@@ -46,13 +46,13 @@ catch (PDOException $e) {
         <div class="col-sm-8 gamelibrary-main">
 
             <div class="gamelibrary-post">
-                <h2 class="gamelibrary-post-title">Game Library</h2>
+                <h2 class="gamelibrary-post-title"><i class="fa fa-home" aria-hidden="true"></i> Home Page</h2>
                 <hr>
                 <p>Gamelibrary description goes here. For best appearance, make it three paragraphs as shown here with this placeholder text. A few sentences per paragraph should be good, at around this length.</p>
                 <hr>
                 <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
                 <hr>
-                <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel by Sam Lerman, Cinthia Lages, Rodrigo Santiago, and Yuen Lee.</p>
             </div><!-- /.gamelibrary-post -->
 
         </div><!-- /.gamelibrary-main -->

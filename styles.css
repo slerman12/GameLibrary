@@ -45,9 +45,10 @@ h6, .h6 {
 .gamelibrary-nav-item {
   position: relative;
   display: inline-block;
-  padding: 10px;
+  padding: 13px 10px;
   font-weight: 500;
   color: #cdddeb;
+  font-size: 15px;
 }
 .gamelibrary-nav-item:hover,
 .gamelibrary-nav-item:focus {
