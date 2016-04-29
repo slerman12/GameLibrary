@@ -191,7 +191,7 @@ h6, .h6 {
   z-index: 3;
 }
 
-.deleteBtn .fa-times:hover{
+.fa-times:hover{
   color: #7b0000;
   cursor: hand;
   cursor: pointer;
