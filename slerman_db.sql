@@ -34,33 +34,37 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: items; Type: TABLE; Schema: public; Owner: slerman
+-- Name: platforms; Type: TABLE; Schema: public; Owner: slerman
 --
 
-CREATE TABLE items (
-    name character varying(10) NOT NULL
+CREATE TABLE platforms (
+    name character varying(40) NOT NULL,
+    version character varying(40) NOT NULL,
+    type character varying(40),
+    speed integer,
+    popularity integer
 );
 
 
-ALTER TABLE items OWNER TO slerman;
+ALTER TABLE platforms OWNER TO slerman;
 
 --
--- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: slerman
+-- Data for Name: platforms; Type: TABLE DATA; Schema: public; Owner: slerman
 --
 
-COPY items (name) FROM stdin;
-one
-two
-three
+COPY platforms (name, version, type, speed, popularity) FROM stdin;
+Windows	10.2	PC	8	10
+iOS	7.4	mobile	4	10
+Linux Debian	10	PC	7	2
 \.
 
 
 --
--- Name: items_pkey; Type: CONSTRAINT; Schema: public; Owner: slerman
+-- Name: name_version; Type: CONSTRAINT; Schema: public; Owner: slerman
 --
 
-ALTER TABLE ONLY items
-    ADD CONSTRAINT items_pkey PRIMARY KEY (name);
+ALTER TABLE ONLY platforms
+    ADD CONSTRAINT name_version PRIMARY KEY (name, version);
 
 
 --
