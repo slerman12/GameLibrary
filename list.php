@@ -3,6 +3,7 @@
 // Purpose: lists
 require_once ('./dbsetup.php');
 
+
 //create HTML table from a psql query ($table) with two attributes of your choice as columns
 function createList($table, $attribute1, $attribute2){
 
@@ -24,8 +25,8 @@ function createList($table, $attribute1, $attribute2){
                         '<td><a href="#"><i class="fa fa-times text-danger"></i></a></td>',
                         '<td>', $row->$attribute1, '</td>',
                         '<td>', $row->$attribute2, '</td>',
-                        '<td><button type="button" class="btn btn-info btn-sm">Relationships</button></td>',
-                        '<td><button type="button" class="btn btn-primary btn-sm">Details/Edit</button></td>',
+                        '<td><button type="button" id="detailsBtn" class="btn btn-info btn-sm">Relationships</button></td>',
+                        '<td><form style="margin:0; padding:0;" action="details.php?',$_SERVER['QUERY_STRING'],'" method="post"><input type="hidden" name="attribute1" value="',$row->$attribute1,'"><input type="hidden" name="attribute2" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
                     '</tr>';
         $i++;
     }
@@ -65,10 +66,10 @@ function createList($table, $attribute1, $attribute2){
         <div class="col-sm-8 col-sm-offset-2 list-main">
             <button class="insert-button btn btn-success"><i class="fa fa-plus"></i></button>
             <?php
+            $who = $_SERVER['QUERY_STRING'];
 
             // Select table query and display list
             try {
-                $who = $_SERVER['QUERY_STRING'];
                 if ($who == 'Sam'){
                     $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms', PDO::FETCH_OBJ);
                     $attribute1 = 'name';
