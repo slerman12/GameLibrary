@@ -35,74 +35,13 @@ require_once ('./dbsetup.php');
         <div class="col-sm-8 col-sm-offset-2 list-main">
             <?php
 
-            function insert($db)
-            {
-                if($who = 'Sam') {
-                    $sql = "INSERT INTO platforms( name,
-                                                version,
-                                                type,
-                                                speed,
-                                                popularity) VALUES (
-                                                :name,
-                                                :version,
-                                                :type,
-                                                :speed,
-                                                :popularity)";
-
-                    $stmt = $db->prepare($sql);
-
-                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
-                    $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
-                    $stmt->bindParam(':type', $_POST['type'], PDO::PARAM_STR);
-// use PARAM_STR although a number
-                    $stmt->bindParam(':speed', $_POST['speed'], PDO::PARAM_STR);
-                    $stmt->bindParam(':popularity', $_POST['popularity'], PDO::PARAM_STR);
-
-                    $stmt->execute();
-                }
-                elseif($who == 'Cinthia'){
-
-                }
-                elseif($who == 'Rodrigo'){
-
-                }
-                elseif($who == 'Lee'){
-
-                }
-                else{
-
-                }
-            }
-
-            function update_platforms($db)
-            {
-                echo "The insert function is called.";
-            }
-
+            // Select table query and display list
             try {
                 $who = $_GET['who'];
 
-                //if insert or update
                 if($_POST){
-                    if($who=='Sam') {
-                        $attribute1 = $_POST['name'];
-                        $attribute2 = $_POST['version'];
-                    }
-                    elseif($who=='Cinthia'){
-                        $attribute1 = $_POST[''];
-                        $attribute2 = $_POST[''];
-                    }
-                    elseif($who=='Rodrigo'){
-                        $attribute1 = $_POST[''];
-                        $attribute2 = $_POST[''];
-                    }
-                    elseif($who=='Lee'){
-                        $attribute1 = $_POST[''];
-                        $attribute2 = $_POST[''];
-                    }
-                    else{
-
-                    }
+                    $attribute1 = $_POST['name'];
+                    $attribute2 = $_POST['version'];
 
                     if(isset($_POST['insert'])){
                         insert($db);
@@ -111,25 +50,8 @@ require_once ('./dbsetup.php');
                     }
                 }
                 else{
-                    if($who=='Sam') {
-                        $attribute1 = $_GET['name'];
-                        $attribute2 = $_GET['version'];
-                    }
-                    elseif($who=='Cinthia'){
-                        $attribute1 = $_GET[''];
-                        $attribute2 = $_GET[''];
-                    }
-                    elseif($who=='Rodrigo'){
-                        $attribute1 = $_GET[''];
-                        $attribute2 = $_GET[''];
-                    }
-                    elseif($who=='Lee'){
-                        $attribute1 = $_GET[''];
-                        $attribute2 = $_GET[''];
-                    }
-                    else{
-
-                    }
+                    $attribute1 = $_GET['name'];
+                    $attribute2 = $_GET['version'];
                 }
 
                 //customize details page

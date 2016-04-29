@@ -66,7 +66,7 @@ require_once ('./dbsetup.php');
                     '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?',$_SERVER['QUERY_STRING'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
                     '<td>', $row->$attribute1, '</td>',
                     '<td>', $row->$attribute2, '</td>',
-                    '<td><button type="button" class="btn btn-info btn-sm">Relationships</button></td>',
+                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm">Relationships</button></form></td>',
                     '<td><form style="margin:0; padding:0;" action="details.php" method="get"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
                     '</tr>';
                     $i++;
