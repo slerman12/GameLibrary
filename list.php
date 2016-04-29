@@ -2,39 +2,8 @@
 // File: list.php
 // Purpose: lists
 require_once ('./dbsetup.php');
-
-
-//create HTML table from a psql query ($table) with two attributes of your choice as columns
-function createList($table, $attribute1, $attribute2){
-
-    echo    '<div class="table-responsive list-table">',
-                '<table class="table table-striped table-hover">',
-                    '<thead>',
-                    '<tr>',
-                        '<th></th>',
-                        '<th>',ucfirst($attribute1),'</th>',
-                        '<th>', ucfirst($attribute2),'</th>',
-                        '<th></th>',
-                        '<th></th>',
-                    '</tr>',
-                    '</thead>',
-                    '<tbody>';
-    $i = 0;
-    while (($row = $table->fetch()) && ($i < 15)) {
-        echo        '<tr>',
-                        '<td><a href="#"><i class="fa fa-times text-danger"></i></a></td>',
-                        '<td>', $row->$attribute1, '</td>',
-                        '<td>', $row->$attribute2, '</td>',
-                        '<td><button type="button" id="detailsBtn" class="btn btn-info btn-sm">Relationships</button></td>',
-                        '<td><form style="margin:0; padding:0;" action="details.php?',$_SERVER['QUERY_STRING'],'" method="post"><input type="hidden" name="attribute1" value="',$row->$attribute1,'"><input type="hidden" name="attribute2" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
-                    '</tr>';
-        $i++;
-    }
-    echo            '</tbody>',
-                '</table>',
-            '</div>';
-}
-?> <html>
+?>
+<html>
 <head>
     <title>Game Library</title>
     <!-- jQuery -->
@@ -60,17 +29,90 @@ function createList($table, $attribute1, $attribute2){
         </nav>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Insert </h2>
+            </div>
+            <div class="modal-body">
+
+                <?php
+                $rs = $db->query('SELECT * FROM platforms LIMIT 0');
+                for ($i = 0; $i < $rs->columnCount(); $i++) {
+                    $col = $rs->getColumnMeta($i);
+                    $columns[] = $col['name'];
+                }
+                echo '<form style="margin:0; padding:0;" action="details.php?who=Sam" method="post">
+                        <input type="hidden" name="insert_platforms" value="2">';
+                foreach($columns as $key){
+                    echo '<div class="form-group row">
+                            <label for="',$key,'" class="col-sm-3 control-label">',$key,'</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="',$key,'" class="form-control" id="',$key,'">
+                        </div>
+                        </div>';
+                }
+                ?>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 list-main">
-            <button class="insert-button btn btn-success"><i class="fa fa-plus"></i></button>
+            <button data-toggle="modal" data-target="#confirmDeleteModal" class="insert-button btn btn-success"><i class="fa fa-plus"></i></button>
+
             <?php
+
+            //create HTML table from a psql query ($table) with two attributes of your choice as columns
+            function createList($table, $attribute1, $attribute2){
+
+                echo    '<div class="table-responsive list-table">',
+                '<table class="table table-striped table-hover">',
+                '<thead>',
+                '<tr>',
+                '<th></th>',
+                '<th>',ucfirst($attribute1),'</th>',
+                '<th>', ucfirst($attribute2),'</th>',
+                '<th></th>',
+                '<th></th>',
+                '</tr>',
+                '</thead>',
+                '<tbody>';
+                $i = 0;
+                while (($row = $table->fetch()) && ($i < 15)) {
+                    echo        '<tr>',
+                    '<td><a href="#"><i class="fa fa-times text-danger"></i></a></td>',
+                    '<td>', $row->$attribute1, '</td>',
+                    '<td>', $row->$attribute2, '</td>',
+                    '<td><button type="button" class="btn btn-info btn-sm">Relationships</button></td>',
+                    '<td><form style="margin:0; padding:0;" action="details.php" method="get"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
+                    '</tr>';
+                    $i++;
+                }
+                echo            '</tbody>',
+                '</table>',
+                '</div>';
+            }
+
             $who = $_SERVER['QUERY_STRING'];
 
             // Select table query and display list
             try {
                 if ($who == 'Sam'){
+                    $relation = 'platforms';
                     $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms', PDO::FETCH_OBJ);
                     $attribute1 = 'name';
                     $attribute2 = 'version';
@@ -122,14 +164,14 @@ function createList($table, $attribute1, $attribute2){
             </div>
             <?php
 
-                // Select table query and display list
-                try {
-                    createList($table, $attribute1, $attribute2);
-                }
-                catch (PDOException $e) {
-                    print "DB Query Error : " . $e->getMessage();
-                    die();
-                }
+            // Select table query and display list
+            try {
+                createList($table, $attribute1, $attribute2);
+            }
+            catch (PDOException $e) {
+                print "DB Query Error : " . $e->getMessage();
+                die();
+            }
 
             ;?>
         </div>
