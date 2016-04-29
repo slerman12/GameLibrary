@@ -29,8 +29,8 @@ require_once ('./dbsetup.php');
         </nav>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="confirmDeleteModal" role="dialog">
+<!-- SAM's INSERT PLATFORMS MODAL -->
+<div class="modal fade" id="insertPlatformsModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -69,13 +69,131 @@ require_once ('./dbsetup.php');
     </div>
 </div>
 
+<!-- CINTHIA's INSERT MODAL -->
+<!--<div class="modal fade" id="insertRELATIONNAMECINTHIAModal" role="dialog">-->
+<!--    <div class="modal-dialog">-->
+<!---->
+<!-- Modal content-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h2 class="modal-title">Insert </h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!---->
+<!--                --><?php
+//                $rs = $db->query('SELECT * FROM cinthiaListRelation LIMIT 0');
+//                for ($i = 0; $i < $rs->columnCount(); $i++) {
+//                    $col = $rs->getColumnMeta($i);
+//                    $columns[] = $col['name'];
+//                }
+//                echo '<form style="margin:0; padding:0;" action="details.php?who=Cinthia" method="post">
+//                        <input type="hidden" name="insert_cinthiaListRelation" value="2">';
+//                foreach($columns as $key){
+//                    echo '<div class="form-group row">
+//                            <label for="',$key,'" class="col-sm-3 control-label">',$key,'</label>
+//                        <div class="col-sm-9">
+//                            <input type="text" name="',$key,'" class="form-control" id="',$key,'">
+//                        </div>
+//                        </div>';
+//                }
+//                ?>
+<!--                <button type="submit" class="btn btn-primary">Confirm</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- RODRIGO's INSERT MODAL -->
+<!--<div class="modal fade" id="insertRELATIONNAMEMRODRIGOodal" role="dialog">-->
+<!--    <div class="modal-dialog">-->
+<!---->
+<!-- Modal content-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h2 class="modal-title">Insert </h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!---->
+<!--                --><?php
+//                $rs = $db->query('SELECT * FROM rodrigoListRelation LIMIT 0');
+//                for ($i = 0; $i < $rs->columnCount(); $i++) {
+//                    $col = $rs->getColumnMeta($i);
+//                    $columns[] = $col['name'];
+//                }
+//                echo '<form style="margin:0; padding:0;" action="details.php?who=Rodrigo" method="post">
+//                        <input type="hidden" name="insert_rodrigoListRelation" value="2">';
+//                foreach($columns as $key){
+//                    echo '<div class="form-group row">
+//                            <label for="',$key,'" class="col-sm-3 control-label">',$key,'</label>
+//                        <div class="col-sm-9">
+//                            <input type="text" name="',$key,'" class="form-control" id="',$key,'">
+//                        </div>
+//                        </div>';
+//                }
+//                ?>
+<!--                <button type="submit" class="btn btn-primary">Confirm</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- LEE's INSERT MODAL -->
+<!--<div class="modal fade" id="insertRELATIONNAMELEEModal" role="dialog">-->
+<!--    <div class="modal-dialog">-->
+<!---->
+<!-- Modal content-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h2 class="modal-title">Insert </h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!---->
+<!--                --><?php
+//                $rs = $db->query('SELECT * FROM leeListRelation LIMIT 0');
+//                for ($i = 0; $i < $rs->columnCount(); $i++) {
+//                    $col = $rs->getColumnMeta($i);
+//                    $columns[] = $col['name'];
+//                }
+//                echo '<form style="margin:0; padding:0;" action="details.php?who=Lee" method="post">
+//                        <input type="hidden" name="insert_leeListRelation" value="2">';
+//                foreach($columns as $key){
+//                    echo '<div class="form-group row">
+//                            <label for="',$key,'" class="col-sm-3 control-label">',$key,'</label>
+//                        <div class="col-sm-9">
+//                            <input type="text" name="',$key,'" class="form-control" id="',$key,'">
+//                        </div>
+//                        </div>';
+//                }
+//                ?>
+<!--                <button type="submit" class="btn btn-primary">Confirm</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</div>-->
+
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 list-main">
-            <button data-toggle="modal" data-target="#confirmDeleteModal" class="insert-button btn btn-success"><i class="fa fa-plus"></i></button>
-
+            <button data-toggle="modal" data-target="#insertPlatformsModal" class="insert-button btn btn-success"><i class="fa fa-plus"></i></button>
             <?php
-
             //create HTML table from a psql query ($table) with two attributes of your choice as columns
             function createList($table, $attribute1, $attribute2){
 
@@ -109,17 +227,18 @@ require_once ('./dbsetup.php');
 
             $who = $_SERVER['QUERY_STRING'];
 
-            // Select table query and display list
+            // Select table query and display customized list
             try {
                 if ($who == 'Sam'){
                     $relation = 'platforms';
-                    $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms', PDO::FETCH_OBJ);
+                    $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms ORDER BY popularity DESC', PDO::FETCH_OBJ);
                     $attribute1 = 'name';
                     $attribute2 = 'version';
                     $listName = 'Platforms';
-                    $listDesc = 'Search for platforms, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete.';
+                    $listDesc = 'Search for platforms, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong>Below are the 15 most popular.</strong>';
                 }
                 elseif ($who == 'Cinthia'){
+                    $relation = '';
                     $table = $db->query('');
                     $attribute1 = '';
                     $attribute2 = '';
@@ -127,6 +246,7 @@ require_once ('./dbsetup.php');
                     $listDesc = '';
                 }
                 elseif ($who == 'Rodrigo'){
+                    $relation = '';
                     $table = $db->query('');
                     $attribute1 = '';
                     $attribute2 = '';
@@ -134,6 +254,7 @@ require_once ('./dbsetup.php');
                     $listDesc = '';
                 }
                 elseif ($who == 'Lee'){
+                    $relation = '';
                     $table = $db->query('');
                     $attribute1 = '';
                     $attribute2 = '';

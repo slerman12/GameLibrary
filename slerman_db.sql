@@ -56,6 +56,9 @@ COPY platforms (name, version, type, speed, popularity) FROM stdin;
 Windows	10.2	PC	8	10
 iOS	7.4	mobile	4	10
 Linux Debian	10	PC	7	2
+xbox	one	console	8	10
+PlayStation	2	console	3	5
+osx	mountain lion	PC	5	7
 \.
 
 
