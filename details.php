@@ -35,9 +35,10 @@ require_once ('./dbsetup.php');
         <div class="col-sm-8 col-sm-offset-2 list-main">
             <?php
 
-            function insert_platforms($db)
+            function insert($db)
             {
-                $sql = "INSERT INTO platforms( name,
+                if($who = 'Sam') {
+                    $sql = "INSERT INTO platforms( name,
                                                 version,
                                                 type,
                                                 speed,
@@ -48,16 +49,29 @@ require_once ('./dbsetup.php');
                                                 :speed,
                                                 :popularity)";
 
-                $stmt = $db->prepare($sql);
+                    $stmt = $db->prepare($sql);
 
-                $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
-                $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
-                $stmt->bindParam(':type', $_POST['type'], PDO::PARAM_STR);
+                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
+                    $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
+                    $stmt->bindParam(':type', $_POST['type'], PDO::PARAM_STR);
 // use PARAM_STR although a number
-                $stmt->bindParam(':speed', $_POST['speed'], PDO::PARAM_STR);
-                $stmt->bindParam(':popularity', $_POST['popularity'], PDO::PARAM_STR);
+                    $stmt->bindParam(':speed', $_POST['speed'], PDO::PARAM_STR);
+                    $stmt->bindParam(':popularity', $_POST['popularity'], PDO::PARAM_STR);
 
-                $stmt->execute();
+                    $stmt->execute();
+                }
+                elseif($who == 'Cinthia'){
+
+                }
+                elseif($who == 'Rodrigo'){
+
+                }
+                elseif($who == 'Lee'){
+
+                }
+                else{
+
+                }
             }
 
             function update_platforms($db)
@@ -73,16 +87,18 @@ require_once ('./dbsetup.php');
                     $attribute1 = $_POST['name'];
                     $attribute2 = $_POST['version'];
 
-                    if(isset($_POST['insert_platforms'])){
-                        insert_platforms($db);
-                    }elseif(isset($_GET['update_platform'])){
-                        update_platforms($db);
+                    if(isset($_POST['insert'])){
+                        insert($db);
+                    }elseif(isset($_GET['update'])){
+                        update($db);
                     }
                 }
                 else{
                     $attribute1 = $_GET['name'];
                     $attribute2 = $_GET['version'];
                 }
+
+                //customize details page
                 if ($who == 'Sam'){
                     $detailsName = 'Platform Details';
 
@@ -92,15 +108,27 @@ require_once ('./dbsetup.php');
                     $tuple->execute();
                 }
                 elseif ($who == 'Cinthia'){
+                    $detailsName = '';
+
                     $tuple = $db->prepare('');
+                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
+                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
                     $tuple->execute();
                 }
                 elseif ($who == 'Rodrigo'){
+                    $detailsName = '';
+
                     $tuple = $db->prepare('');
+                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
+                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
                     $tuple->execute();
                 }
                 elseif ($who == 'Lee'){
+                    $detailsName = '';
+
                     $tuple = $db->prepare('');
+                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
+                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
                     $tuple->execute();
                 }
                 else{

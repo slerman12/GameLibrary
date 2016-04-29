@@ -15,6 +15,16 @@ require_once ('./dbsetup.php');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href="styles.css" rel="stylesheet">
 </head>
+<script>
+    //delete
+    $(document).ready(function() {
+        $('.deleteBtn').click(function() {
+            if (confirm('Are you sure?')) {
+                $(this).submit();
+            }
+        });
+    });
+</script>
 <body>
 <div class="gamelibrary-masthead">
     <div class="container">
@@ -53,7 +63,7 @@ require_once ('./dbsetup.php');
                 $i = 0;
                 while (($row = $table->fetch()) && ($i < 15)) {
                     echo        '<tr>',
-                    '<td><a href="#"><i class="fa fa-times text-danger"></i></a></td>',
+                    '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?',$_SERVER['QUERY_STRING'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
                     '<td>', $row->$attribute1, '</td>',
                     '<td>', $row->$attribute2, '</td>',
                     '<td><button type="button" class="btn btn-info btn-sm">Relationships</button></td>',
@@ -66,10 +76,41 @@ require_once ('./dbsetup.php');
                 '</div>';
             }
 
+            function delete($db)
+            {
+                if($who = 'Sam') {
+                    $sql = "DELETE FROM platforms WHERE name=:name AND
+                                                version=:version";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
+                    $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
+                    $stmt->execute();
+                }
+                elseif($who == 'Cinthia'){
+
+                }
+                elseif($who == 'Rodrigo'){
+
+                }
+                elseif($who == 'Lee'){
+
+                }
+                else{
+
+                }
+            }
+
             $who = $_SERVER['QUERY_STRING'];
 
-            // Select table query and display customized list
             try {
+                //delete if called
+                if($_POST){
+                    if(isset($_POST['delete'])){
+                        delete($db);
+                    }
+                }
+
+                // Select table query and display customized list
                 if ($who == 'Sam'){
                     $relation = 'platforms';
                     $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms ORDER BY popularity DESC', PDO::FETCH_OBJ);
@@ -144,7 +185,7 @@ require_once ('./dbsetup.php');
 
 </div>
 
-<!-- SAM's INSERT PLATFORMS MODAL -->
+<!-- INSERT MODAL -->
 <div class="modal fade" id="insertModal" role="dialog">
     <div class="modal-dialog">
 
@@ -163,7 +204,7 @@ require_once ('./dbsetup.php');
                     $columns[] = $col['name'];
                 }
                 echo '<form style="margin:0; padding:0;" action="details.php?who=',$who,'" method="post">
-                        <input type="hidden" name="insert_',$relation,'" value="2">';
+                        <input type="hidden" name="insert" value="2">';
                 foreach($columns as $key){
                     echo '<div class="form-group row">
                             <label for="',$key,'" class="col-sm-3 control-label">',$key,'</label>
@@ -183,5 +224,6 @@ require_once ('./dbsetup.php');
 
     </div>
 </div>
+
 </body>
 </html>
