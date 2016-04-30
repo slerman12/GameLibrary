@@ -125,7 +125,7 @@ function test_input($data) {
 //                        $search = test_input($_GET['search']);
 //                        $stmt = 'SELECT name, version, type, speed, popularity FROM platforms WHERE name = '.$search.' OR version = '.$search.' OR type = '.$search.' OR speed = '.$search.' OR popularity = '.$search.' ORDER BY popularity DESC';
 //                        $table = $db->query($stmt);
-                        $table = $db->prepare("SELECT name, version, type, speed, popularity FROM platforms WHERE LOWER(name) LIKE LOWER(:search) OR LOWER(version) LIKE LOWER(:search) OR LOWER(type) LIKE LOWER(:search) OR LOWER(CAST(speed AS text)) = LOWER(:search) OR LOWER(CAST(popularity AS text)) = LOWER(:search) ORDER BY popularity DESC");
+                        $table = $db->prepare("SELECT name, version, type, speed, popularity FROM platforms WHERE (LOWER(:search) ILIKE '%' || LOWER(name) || '%') OR (LOWER(:search) ILIKE '%' || LOWER(version) || '%') OR (LOWER(:search) ILIKE '%' || LOWER(type) || '%') OR (LOWER(:search) ILIKE LOWER(speed::text)) OR (LOWER(:search) ILIKE LOWER(popularity::text)) ORDER BY popularity DESC");
                         $table->bindValue(':search', test_input($_GET['search']), PDO::PARAM_STR);
                         $table->execute();
                     }else{
