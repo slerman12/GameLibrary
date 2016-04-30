@@ -3,6 +3,14 @@
 // Purpose: lists
 require_once ('./dbsetup.php');
 
+//input validation
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?> <html>
 <head>
     <title>Game Library</title>
@@ -37,12 +45,12 @@ require_once ('./dbsetup.php');
             <?php
 
             try {
-                $who = $_GET['who'];
+                $who = test_input($_GET['who']);
 
                 //customize details page
                 if ($who == 'Sam'){
-                    $attribute1 = $_GET['name'];
-                    $attribute2 = $_GET['version'];
+                    $attribute1 = test_input($_GET['name']);
+                    $attribute2 = test_input($_GET['version']);
 
                     $users_platform = $db->prepare('SELECT players.name AS name FROM usersPlatform, players WHERE usersPlatform.plat_name=:name AND usersPlatform.plat_version=:version AND usersPlatform.player_id=players.id');
                     $users_platform->bindValue(':name', $attribute1, PDO::PARAM_STR);
@@ -100,8 +108,8 @@ require_once ('./dbsetup.php');
                     '</div>';
                 }
                 elseif ($who == 'Cinthia'){
-                    $attribute1 = $_GET[''];
-                    $attribute2 = $_GET[''];
+                    $attribute1 = test_input($_GET['']);
+                    $attribute2 = test_input($_GET['']);
 
                     $table = $db->prepare('');
                     $table->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -109,8 +117,8 @@ require_once ('./dbsetup.php');
                     $table->execute();
                 }
                 elseif ($who == 'Rodrigo'){
-                    $attribute1 = $_GET[''];
-                    $attribute2 = $_GET[''];
+                    $attribute1 = test_input($_GET['']);
+                    $attribute2 = test_input($_GET['']);
 
                     $table = $db->prepare('');
                     $table->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -118,8 +126,8 @@ require_once ('./dbsetup.php');
                     $table->execute();
                 }
                 elseif ($who == 'Lee'){
-                    $attribute1 = $_GET[''];
-                    $attribute2 = $_GET[''];
+                    $attribute1 = test_input($_GET['']);
+                    $attribute2 = test_input($_GET['']);
 
                     $table = $db->prepare('');
                     $table->bindValue(':key1', $attribute1, PDO::PARAM_STR);

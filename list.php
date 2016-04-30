@@ -2,6 +2,14 @@
 // File: list.php
 // Purpose: lists
 require_once ('./dbsetup.php');
+
+//input validation
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
 <html>
 <head>
@@ -100,7 +108,7 @@ require_once ('./dbsetup.php');
                 }
             }
 
-            $who = $_SERVER['QUERY_STRING'];
+            $who = test_input($_SERVER['QUERY_STRING']);
 
             try {
                 //delete if called

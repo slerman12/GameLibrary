@@ -3,6 +3,14 @@
 // Purpose: lists
 require_once ('./dbsetup.php');
 
+//input validation
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?> <html>
 <head>
     <title>Game Library</title>
@@ -51,12 +59,12 @@ require_once ('./dbsetup.php');
 
                     $stmt = $db->prepare($sql);
 
-                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
-                    $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
-                    $stmt->bindParam(':type', $_POST['type'], PDO::PARAM_STR);
+                    $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam(':version', test_input($_POST['version']), PDO::PARAM_STR);
+                    $stmt->bindParam(':type', test_input($_POST['type']), PDO::PARAM_STR);
 // use PARAM_STR although a number
-                    $stmt->bindParam(':speed', $_POST['speed'], PDO::PARAM_STR);
-                    $stmt->bindParam(':popularity', $_POST['popularity'], PDO::PARAM_STR);
+                    $stmt->bindParam(':speed', test_input($_POST['speed']), PDO::PARAM_STR);
+                    $stmt->bindParam(':popularity', test_input($_POST['popularity']), PDO::PARAM_STR);
 
                     $stmt->execute();
                 }
@@ -80,25 +88,25 @@ require_once ('./dbsetup.php');
             }
 
             try {
-                $who = $_GET['who'];
+                $who = test_input($_GET['who']);
 
                 //if insert or update
                 if($_POST){
                     if($who=='Sam') {
-                        $attribute1 = $_POST['name'];
-                        $attribute2 = $_POST['version'];
+                        $attribute1 = test_input($_POST['name']);
+                        $attribute2 = test_input($_POST['version']);
                     }
                     elseif($who=='Cinthia'){
-                        $attribute1 = $_POST[''];
-                        $attribute2 = $_POST[''];
+                        $attribute1 = test_input($_POST['']);
+                        $attribute2 = test_input($_POST['']);
                     }
                     elseif($who=='Rodrigo'){
-                        $attribute1 = $_POST[''];
-                        $attribute2 = $_POST[''];
+                        $attribute1 = test_input($_POST['']);
+                        $attribute2 = test_input($_POST['']);
                     }
                     elseif($who=='Lee'){
-                        $attribute1 = $_POST[''];
-                        $attribute2 = $_POST[''];
+                        $attribute1 = test_input($_POST['']);
+                        $attribute2 = test_input($_POST['']);
                     }
                     else{
 
@@ -112,20 +120,20 @@ require_once ('./dbsetup.php');
                 }
                 else{
                     if($who=='Sam') {
-                        $attribute1 = $_GET['name'];
-                        $attribute2 = $_GET['version'];
+                        $attribute1 = test_input($_GET['name']);
+                        $attribute2 = test_input($_GET['version']);
                     }
                     elseif($who=='Cinthia'){
-                        $attribute1 = $_GET[''];
-                        $attribute2 = $_GET[''];
+                        $attribute1 = test_input($_GET['']);
+                        $attribute2 = test_input($_GET['']);
                     }
                     elseif($who=='Rodrigo'){
-                        $attribute1 = $_GET[''];
-                        $attribute2 = $_GET[''];
+                        $attribute1 = test_input($_GET['']);
+                        $attribute2 = test_input($_GET['']);
                     }
                     elseif($who=='Lee'){
-                        $attribute1 = $_GET[''];
-                        $attribute2 = $_GET[''];
+                        $attribute1 = test_input($_GET['']);
+                        $attribute2 = test_input($_GET['']);
                     }
                     else{
 
