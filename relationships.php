@@ -33,38 +33,51 @@ require_once ('./dbsetup.php');
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 list-main">
+            <h2>Relationships</h2><hr>
             <?php
 
-            // Select table query and display list
             try {
                 $who = $_GET['who'];
 
-                if($_POST){
-                    $attribute1 = $_POST['name'];
-                    $attribute2 = $_POST['version'];
-
-                    if(isset($_POST['insert'])){
-                        insert($db);
-                    }elseif(isset($_GET['update'])){
-                        update($db);
-                    }
-                }
-                else{
-                    $attribute1 = $_GET['name'];
-                    $attribute2 = $_GET['version'];
-                }
-
                 //customize details page
                 if ($who == 'Sam'){
-                    $detailsName = 'Platform Details';
+                    $attribute1 = $_GET['name'];
+                    $attribute2 = $_GET['version'];
 
                     $tuple = $db->prepare('SELECT name, version, type, speed, popularity FROM platforms WHERE name=:name AND version=:version');
                     $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $tuple->execute();
+
+                    //display relationships
+                    echo    '<div class="table-responsive list-table">',
+                    '<table class="table table-striped table-hover">',
+                    '<thead>',
+                    '<tr>',
+                    '<th>Name</th>',
+                    '<th>Version</th>',
+                    '<th>Relationship</th>',
+                    '<th>Relation</th>',
+                    '</tr>',
+                    '</thead>',
+                    '<tbody>';
+                    $row = $tuple->fetch(PDO::FETCH_OBJ);
+                    foreach($row as $key => $value) {
+                        echo        '<tr>',
+                        '<td>', $Name, '</td>',
+                        '<td>', $Version, '</td>',
+                        '<td>', $Name, '</td>',
+                        '<td>', $Version, '</td>',
+                        '</tr>';
+                    }
+
+                    echo            '</tbody>',
+                    '</table>',
+                    '</div>';
                 }
                 elseif ($who == 'Cinthia'){
-                    $detailsName = '';
+                    $attribute1 = $_GET[''];
+                    $attribute2 = $_GET[''];
 
                     $tuple = $db->prepare('');
                     $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -72,7 +85,8 @@ require_once ('./dbsetup.php');
                     $tuple->execute();
                 }
                 elseif ($who == 'Rodrigo'){
-                    $detailsName = '';
+                    $attribute1 = $_GET[''];
+                    $attribute2 = $_GET[''];
 
                     $tuple = $db->prepare('');
                     $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -80,7 +94,8 @@ require_once ('./dbsetup.php');
                     $tuple->execute();
                 }
                 elseif ($who == 'Lee'){
-                    $detailsName = '';
+                    $attribute1 = $_GET[''];
+                    $attribute2 = $_GET[''];
 
                     $tuple = $db->prepare('');
                     $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -91,36 +106,6 @@ require_once ('./dbsetup.php');
 
                 }
 
-            }
-            catch (PDOException $e) {
-                print "DB Query Error : " . $e->getMessage();
-                die();
-            }
-
-            echo '<h2>', $detailsName, '</h2><hr>';
-
-            // Show tuple
-            try {
-                echo    '<div class="table-responsive list-table">',
-                '<table class="table table-striped table-hover">',
-                '<thead>',
-                '<tr>',
-                '<th>Key</th>',
-                '<th>Value</th>',
-                '</tr>',
-                '</thead>',
-                '<tbody>';
-                $row = $tuple->fetch(PDO::FETCH_OBJ);
-                foreach($row as $key => $value) {
-                    echo        '<tr>',
-                    '<td>', $key, '</td>',
-                    '<td>', $value, '</td>',
-                    '</tr>';
-                }
-
-                echo            '</tbody>',
-                '</table>',
-                '</div>';
             }
             catch (PDOException $e) {
                 print "DB Query Error : " . $e->getMessage();
