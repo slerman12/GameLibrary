@@ -61,7 +61,7 @@ require_once ('./dbsetup.php');
                 '</thead>',
                 '<tbody>';
                 $i = 0;
-                while (($row = $table->fetch()) && ($i < 15)) {
+                while ($row = $table->fetch()) {
                     echo        '<tr>',
                     '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?',$_SERVER['QUERY_STRING'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
                     '<td>', $row->$attribute1, '</td>',
@@ -113,7 +113,7 @@ require_once ('./dbsetup.php');
                 // Select table query and display customized list
                 if ($who == 'Sam'){
                     $relation = 'platforms';
-                    $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms ORDER BY popularity DESC', PDO::FETCH_OBJ);
+                    $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms ORDER BY popularity DESC LIMIT 15', PDO::FETCH_OBJ);
                     $attribute1 = 'name';
                     $attribute2 = 'version';
                     $listName = 'Platforms';

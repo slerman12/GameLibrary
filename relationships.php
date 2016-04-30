@@ -44,30 +44,54 @@ require_once ('./dbsetup.php');
                     $attribute1 = $_GET['name'];
                     $attribute2 = $_GET['version'];
 
-                    $tuple = $db->prepare('SELECT name, version, type, speed, popularity FROM platforms WHERE name=:name AND version=:version');
-                    $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':version', $attribute2, PDO::PARAM_STR);
-                    $tuple->execute();
+                    $users_platform = $db->prepare('SELECT players.name AS name FROM usersPlatform, players WHERE usersPlatform.plat_name=:name AND usersPlatform.plat_version=:version AND usersPlatform.player_id=players.id');
+                    $users_platform->bindValue(':name', $attribute1, PDO::PARAM_STR);
+                    $users_platform->bindValue(':version', $attribute2, PDO::PARAM_STR);
+                    $users_platform->execute();
+
+                    $runs_on = $db->prepare('SELECT game_name AS name FROM runsOn WHERE plat_name=:name AND plat_version=:version');
+                    $runs_on->bindValue(':name', $attribute1, PDO::PARAM_STR);
+                    $runs_on->bindValue(':version', $attribute2, PDO::PARAM_STR);
+                    $runs_on->execute();
+
+                    $develops_for = $db->prepare('SELECT developers.name AS name FROM developsFor, developers WHERE developsFor.plat_name=:name AND developsFor.plat_version=:version AND developsFor.developer_id=developers.id');
+                    $develops_for->bindValue(':name', $attribute1, PDO::PARAM_STR);
+                    $develops_for->bindValue(':version', $attribute2, PDO::PARAM_STR);
+                    $develops_for->execute();
 
                     //display relationships
                     echo    '<div class="table-responsive list-table">',
                     '<table class="table table-striped table-hover">',
                     '<thead>',
                     '<tr>',
-                    '<th>Name</th>',
-                    '<th>Version</th>',
+                    '<th>Entity Type</th>',
+                    '<th>Entity</th>',
                     '<th>Relationship</th>',
-                    '<th>Relation</th>',
                     '</tr>',
                     '</thead>',
                     '<tbody>';
-                    $row = $tuple->fetch(PDO::FETCH_OBJ);
-                    foreach($row as $key => $value) {
+
+                    while ($row = $users_platform->fetch()) {
                         echo        '<tr>',
-                        '<td>', $Name, '</td>',
-                        '<td>', $Version, '</td>',
-                        '<td>', $Name, '</td>',
-                        '<td>', $Version, '</td>',
+                        '<td>Player</td>',
+                        '<td>',$row->$name,' </td>',
+                        '<td>Uses</td>',
+                        '</tr>';
+                    }
+
+                    while ($row = $runs_on->fetch()) {
+                        echo        '<tr>',
+                        '<td>Game</td>',
+                        '<td>',$row->$name,'</td>',
+                        '<td>Runs On</td>',
+                        '</tr>';
+                    }
+
+                    while ($row = $develops_for->fetch()) {
+                        echo        '<tr>',
+                        '<td>Developer</td>',
+                        '<td>',$row->$name,'</td>',
+                        '<td>Develops For</td>',
                         '</tr>';
                     }
 
@@ -79,28 +103,28 @@ require_once ('./dbsetup.php');
                     $attribute1 = $_GET[''];
                     $attribute2 = $_GET[''];
 
-                    $tuple = $db->prepare('');
-                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
-                    $tuple->execute();
+                    $table = $db->prepare('');
+                    $table->bindValue(':key1', $attribute1, PDO::PARAM_STR);
+                    $table->bindValue(':key2', $attribute2, PDO::PARAM_STR);
+                    $table->execute();
                 }
                 elseif ($who == 'Rodrigo'){
                     $attribute1 = $_GET[''];
                     $attribute2 = $_GET[''];
 
-                    $tuple = $db->prepare('');
-                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
-                    $tuple->execute();
+                    $table = $db->prepare('');
+                    $table->bindValue(':key1', $attribute1, PDO::PARAM_STR);
+                    $table->bindValue(':key2', $attribute2, PDO::PARAM_STR);
+                    $table->execute();
                 }
                 elseif ($who == 'Lee'){
                     $attribute1 = $_GET[''];
                     $attribute2 = $_GET[''];
 
-                    $tuple = $db->prepare('');
-                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
-                    $tuple->execute();
+                    $table = $db->prepare('');
+                    $table->bindValue(':key1', $attribute1, PDO::PARAM_STR);
+                    $table->bindValue(':key2', $attribute2, PDO::PARAM_STR);
+                    $table->execute();
                 }
                 else{
 
