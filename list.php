@@ -206,7 +206,9 @@ function test_input($data) {
             <div class="modal-body">
 
                 <?php
-                $rs = $db->query('SELECT * FROM platforms LIMIT 0');
+                $stmt = 'SELECT * FROM '.$relation.' LIMIT 0';
+                $rs = $db->query($stmt);
+
                 for ($i = 0; $i < $rs->columnCount(); $i++) {
                     $col = $rs->getColumnMeta($i);
                     $columns[] = $col['name'];

@@ -41,6 +41,7 @@ function test_input($data) {
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 list-main">
+
             <?php
 
             function insert($db)
@@ -82,9 +83,38 @@ function test_input($data) {
                 }
             }
 
-            function update_platforms($db)
+            function update($db)
             {
-                echo "The insert function is called.";
+                if($who = 'Sam') {
+                    $sql = "UPDATE platforms SET name = :name,
+                                                            version = :version,
+                                                            type = :type,
+                                                            speed = :speed,
+                                                            popularity = :popularity
+                                                            WHERE name=:name AND version=:version";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam(':version', test_input($_POST['version']), PDO::PARAM_STR);
+                    $stmt->bindParam(':type', test_input($_POST['type']), PDO::PARAM_STR);
+                    $stmt->bindParam(':speed', test_input($_POST['speed']), PDO::PARAM_STR);
+                    $stmt->bindParam(':popularity', test_input($_POST['popularity']), PDO::PARAM_STR);
+
+                    $stmt->execute();
+                }
+                elseif($who == 'Cinthia'){
+
+                }
+                elseif($who == 'Rodrigo'){
+
+                }
+                elseif($who == 'Lee'){
+
+                }
+                else{
+
+                }
             }
 
             try {
@@ -114,7 +144,7 @@ function test_input($data) {
 
                     if(isset($_POST['insert'])){
                         insert($db);
-                    }elseif(isset($_GET['update'])){
+                    }elseif(isset($_POST['update'])){
                         update($db);
                     }
                 }
@@ -143,6 +173,7 @@ function test_input($data) {
                 //customize details page
                 if ($who == 'Sam'){
                     $detailsName = 'Platform Details';
+                    $relation = 'platforms';
 
                     $tuple = $db->prepare('SELECT name, version, type, speed, popularity FROM platforms WHERE name=:name AND version=:version');
                     $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
@@ -151,6 +182,7 @@ function test_input($data) {
                 }
                 elseif ($who == 'Cinthia'){
                     $detailsName = '';
+                    $relation = '';
 
                     $tuple = $db->prepare('');
                     $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -159,6 +191,7 @@ function test_input($data) {
                 }
                 elseif ($who == 'Rodrigo'){
                     $detailsName = '';
+                    $relation = '';
 
                     $tuple = $db->prepare('');
                     $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -167,6 +200,7 @@ function test_input($data) {
                 }
                 elseif ($who == 'Lee'){
                     $detailsName = '';
+                    $relation = '';
 
                     $tuple = $db->prepare('');
                     $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
@@ -183,7 +217,7 @@ function test_input($data) {
                 die();
             }
 
-            echo '<h2>', $detailsName, '</h2><hr>';
+            echo '<div class="row"><div class="col-sm-6"><h2>', $detailsName, '</h2></div><div class="col-sm-6"><button data-toggle="modal" data-target="#updateModal" class=" pull-right update-button btn btn-success">Edit</button></div></div><hr>';
 
             // Show tuple
             try {
@@ -221,5 +255,51 @@ function test_input($data) {
 </div><!-- /.container -->
 
 </div>
+
+<!-- UPDATE MODAL -->
+<div class="modal fade" id="updateModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Edit </h2>
+            </div>
+            <div class="modal-body">
+
+                <?php
+                    echo    '<form action="details.php?who=',$who,'" method="post"><div class="table-responsive list-table">',
+                    '<table class="table table-striped table-hover">',
+                    '<thead>',
+                    '<tr>',
+                    '<th>Key</th>',
+                    '<th>Value</th>',
+                    '</tr>',
+                    '</thead>',
+                    '<tbody>';
+                    foreach($row as $key => $value) {
+                        echo        '<tr>',
+                        '<td>', $key, '</td>',
+                        '<td><input type="text" value="',$value,'" name="',$key,'" class="form-control" id="',$key,'"></td>',
+                        '</tr>';
+                    }
+
+                    echo            '</tbody>',
+                    '</table>',
+                    '</div>';
+                ?>
+                <input type="hidden" name="update" value="1">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>
