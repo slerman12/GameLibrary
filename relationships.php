@@ -41,7 +41,6 @@ function test_input($data) {
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 list-main">
-            <h2>Relationships</h2><hr>
             <?php
 
             try {
@@ -49,6 +48,8 @@ function test_input($data) {
 
                 //customize details page
                 if ($who == 'Sam'){
+                    $relationshipName = 'Platform Relationships';
+
                     $attribute1 = test_input($_GET['name']);
                     $attribute2 = test_input($_GET['version']);
 
@@ -108,6 +109,8 @@ function test_input($data) {
                     '</div>';
                 }
                 elseif ($who == 'Cinthia'){
+                    $relationshipName = '';
+
                     $attribute1 = test_input($_GET['']);
                     $attribute2 = test_input($_GET['']);
 
@@ -117,6 +120,8 @@ function test_input($data) {
                     $table->execute();
                 }
                 elseif ($who == 'Rodrigo'){
+                    $relationshipName = '';
+
                     $attribute1 = test_input($_GET['']);
                     $attribute2 = test_input($_GET['']);
 
@@ -126,6 +131,8 @@ function test_input($data) {
                     $table->execute();
                 }
                 elseif ($who == 'Lee'){
+                    $relationshipName = '';
+
                     $attribute1 = test_input($_GET['']);
                     $attribute2 = test_input($_GET['']);
 
@@ -143,6 +150,9 @@ function test_input($data) {
                 print "DB Query Error : " . $e->getMessage();
                 die();
             }
+
+            echo '<h2>$relationshipName</h2><hr>';
+
 
             ;?>
         </div>
