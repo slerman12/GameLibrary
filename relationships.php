@@ -68,6 +68,8 @@ function test_input($data) {
                     $develops_for->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $develops_for->execute();
 
+                    echo '<h2>',$relationshipName,'</h2><hr>';
+
                     //display relationships
                     echo    '<div class="table-responsive list-table">',
                     '<table class="table table-striped table-hover">',
@@ -151,7 +153,6 @@ function test_input($data) {
                 die();
             }
 
-            echo '<h2>',$relationshipName,'</h2><hr>';
 
 
             ;?>
