@@ -24,10 +24,10 @@ require_once ('./dbsetup.php');
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?Sam">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?Cinthia">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?Rodrigo">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?Lee">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
             </div>
         </nav>
     </div>
@@ -53,10 +53,10 @@ require_once ('./dbsetup.php');
             <div class="sidebar-module">
                 <h4>Lists</h4>
                 <ol class="list-unstyled">
-                    <li><a href="./list.php?Sam">Sam - Platforms</a></li>
-                    <li><a href="./list.php?Cinthia">Cinthia - RelationName</a></li>
-                    <li><a href="./list.php?Rodrigo">Rodrigo - RelationName</a></li>
-                    <li><a href="./list.php?Lee">Lee - RelationName</a></li>
+                    <li><a href="./list.php?who=Sam">Sam - Platforms</a></li>
+                    <li><a href="./list.php?who=Cinthia">Cinthia - RelationName</a></li>
+                    <li><a href="./list.php?who=Rodrigo">Rodrigo - RelationName</a></li>
+                    <li><a href="./list.php?who=Lee">Lee - RelationName</a></li>
                 </ol>
             </div>
         </div><!-- /.gamelibrary-sidebar -->

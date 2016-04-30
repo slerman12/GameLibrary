@@ -39,10 +39,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?Sam">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?Cinthia">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?Rodrigo">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?Lee">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
             </div>
         </nav>
     </div>
@@ -69,13 +69,13 @@ function test_input($data) {
                 '</thead>',
                 '<tbody>';
                 $i = 0;
-                while ($row = $table->fetch()) {
+                while ($row = $table->fetch(PDO::FETCH_OBJ)) {
                     echo        '<tr>',
-                    '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?',$_SERVER['QUERY_STRING'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
+                    '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?who=',$_GET['who'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
                     '<td>', $row->$attribute1, '</td>',
                     '<td>', $row->$attribute2, '</td>',
-                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm">Relationships</button></form></td>',
-                    '<td><form style="margin:0; padding:0;" action="details.php" method="get"><input type="hidden" name="who" value="',$_SERVER['QUERY_STRING'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
+                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm">Relationships</button></form></td>',
+                    '<td><form style="margin:0; padding:0;" action="details.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
                     '</tr>';
                     $i++;
                 }
@@ -108,7 +108,7 @@ function test_input($data) {
                 }
             }
 
-            $who = test_input($_SERVER['QUERY_STRING']);
+            $who = test_input($_GET['who']);
 
             try {
                 //delete if called
@@ -121,7 +121,16 @@ function test_input($data) {
                 // Select table query and display customized list
                 if ($who == 'Sam'){
                     $relation = 'platforms';
-                    $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms ORDER BY popularity DESC LIMIT 15', PDO::FETCH_OBJ);
+                    if(isset($_GET['search'])){
+//                        $search = test_input($_GET['search']);
+//                        $stmt = 'SELECT name, version, type, speed, popularity FROM platforms WHERE name = '.$search.' OR version = '.$search.' OR type = '.$search.' OR speed = '.$search.' OR popularity = '.$search.' ORDER BY popularity DESC';
+//                        $table = $db->query($stmt);
+                        $table = $db->prepare("SELECT name, version, type, speed, popularity FROM platforms WHERE LOWER(name) LIKE LOWER(:search) OR LOWER(version) LIKE LOWER(:search) OR LOWER(type) LIKE LOWER(:search) OR LOWER(CAST(speed AS text)) = LOWER(:search) OR LOWER(CAST(popularity AS text)) = LOWER(:search) ORDER BY popularity DESC");
+                        $table->bindValue(':search', test_input($_GET['search']), PDO::PARAM_STR);
+                        $table->execute();
+                    }else{
+                        $table = $db->query('SELECT name, version, type, speed, popularity FROM platforms ORDER BY popularity DESC LIMIT 15');
+                    }
                     $attribute1 = 'name';
                     $attribute2 = 'version';
                     $listName = 'Platforms';
@@ -160,20 +169,22 @@ function test_input($data) {
                 die();
             }
 
-            ?>
-            <h2><?php echo $listName; ?></h2>
-            <p><?php echo $listDesc; ?></p>
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="  search-query form-control" placeholder="Search" />
+            //search bar
+            echo '<h2>',$listName,'</h2>
+            <p>',$listDesc,'</p>
+            <form style="margin: 0; padding: 0;" action="list.php" method="get">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="hidden" name="who" value="',$who,'">
+                        <input type="text" name="search" class="  search-query form-control" placeholder="Search" />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
+                                    <button class="btn btn-danger" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
+                    </div>
                 </div>
-            </div>
-            <?php
+            </form>';
 
             // Select table query and display list
             try {
