@@ -151,7 +151,7 @@ function test_input($data) {
                 die();
             }
 
-            echo '<h2>$relationshipName</h2><hr>';
+            echo '<h2>',$relationshipName,'</h2><hr>';
 
 
             ;?>
