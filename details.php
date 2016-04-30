@@ -86,20 +86,18 @@ function test_input($data) {
             function update($db)
             {
                 if($who = 'Sam') {
-                    $sql = "UPDATE platforms SET name = :name,
-                                                            version = :version,
-                                                            type = :type,
-                                                            speed = :speed,
-                                                            popularity = :popularity
-                                                            WHERE name=:name AND version=:version";
+
+                    $sql = "UPDATE platforms SET name = :name, version = :version, type = :type, speed = :speed, popularity = :popularity WHERE name=:nameOriginal AND version=:versionOriginal";
 
                     $stmt = $db->prepare($sql);
 
-                    $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
-                    $stmt->bindParam(':version', test_input($_POST['version']), PDO::PARAM_STR);
-                    $stmt->bindParam(':type', test_input($_POST['type']), PDO::PARAM_STR);
-                    $stmt->bindParam(':speed', test_input($_POST['speed']), PDO::PARAM_STR);
-                    $stmt->bindParam(':popularity', test_input($_POST['popularity']), PDO::PARAM_STR);
+                    $stmt->bindParam('name',  test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam('version',  test_input($_POST['version']), PDO::PARAM_STR);
+                    $stmt->bindParam('type', test_input($_POST['type']), PDO::PARAM_STR);
+                    $stmt->bindParam('speed', test_input($_POST['speed']), PDO::PARAM_STR);
+                    $stmt->bindParam('popularity', test_input($_POST['popularity']), PDO::PARAM_STR);
+                    $stmt->bindParam('nameOriginal',  test_input($_POST['attribute1']), PDO::PARAM_STR);
+                    $stmt->bindParam('versionOriginal',  test_input($_POST['attribute2']), PDO::PARAM_STR);
 
                     $stmt->execute();
                 }
@@ -122,6 +120,13 @@ function test_input($data) {
 
                 //if insert or update
                 if($_POST){
+
+                    if(isset($_POST['insert'])){
+                        insert($db);
+                    }elseif(isset($_POST['update'])){
+                        update($db);
+                    }
+
                     if($who=='Sam') {
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['version']);
@@ -140,12 +145,6 @@ function test_input($data) {
                     }
                     else{
 
-                    }
-
-                    if(isset($_POST['insert'])){
-                        insert($db);
-                    }elseif(isset($_POST['update'])){
-                        update($db);
                     }
                 }
                 else{
@@ -288,6 +287,9 @@ function test_input($data) {
                     echo            '</tbody>',
                     '</table>',
                     '</div>';
+                echo '
+                    <input type="hidden" name="attribute1" value="',$attribute1,'">
+                    <input type="hidden" name="attribute2" value="',$attribute2,'">'
                 ?>
                 <input type="hidden" name="update" value="1">
                 <button type="submit" class="btn btn-primary">Confirm</button>
