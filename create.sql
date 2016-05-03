@@ -40,7 +40,7 @@ CREATE TABLE usersPlatform(
     plat_version VARCHAR(40) NOT NULL,
     PRIMARY KEY (plat_name, plat_version, plat_name),
     FOREIGN KEY(plat_name, plat_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY player_name references players (name) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (player_name) REFERENCES players (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- INSERT INTO players VALUES(’Rob',’add1753’,’23’,’120’);
