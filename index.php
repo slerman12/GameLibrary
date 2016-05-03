@@ -66,7 +66,7 @@ require_once ('./dbsetup.php');
 </div><!-- /.container -->
 
 <footer class="gamelibrary-footer">
-    <p><a href="#">Project Design Document</a>.</p>
+    <p><a href="DesignDoc.pdf">Project Design Document</a>.</p>
 </footer>
 
 </div>
