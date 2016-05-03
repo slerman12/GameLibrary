@@ -40,7 +40,7 @@ require_once ('./dbsetup.php');
             <div class="gamelibrary-post">
                 <h2 class="gamelibrary-post-title"><i class="fa fa-home" aria-hidden="true"></i> Home Page</h2>
                 <hr>
-                <p>Game Library is an intricate database for storing all of your gaming-related information, from the state of your games to the high scores of each player to the user platforms--everything you need, all in one place..</p>
+                <p>Game Library is an intricate database for storing all of your gaming-related information, from the state of your games to the high scores of each player to the user platforms--everything you need, all in one place.</p>
                 <hr>
                 <p>This site is a graphical interface into the heart of our game library. Visit Sam's list for an example of the kind of storage we implement. Play around, search, insert, update, delete, and view relationships at your leisure.</p>
                 <hr>
