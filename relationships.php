@@ -85,7 +85,7 @@ function test_input($data) {
                     while ($row = $users_platform->fetch()) {
                         echo        '<tr>',
                         '<td>Player</td>',
-                        '<td>',$row->['name'],' </td>',
+                        '<td>',$row['name'],' </td>',
                         '<td>Uses</td>',
                         '</tr>';
                     }
@@ -101,7 +101,7 @@ function test_input($data) {
                     while ($row = $develops_for->fetch()) {
                         echo        '<tr>',
                         '<td>Developer</td>',
-                        '<td>',$row->['name'],'</td>',
+                        '<td>',$row['name'],'</td>',
                         '<td>Develops For</td>',
                         '</tr>';
                     }
