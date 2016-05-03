@@ -64,7 +64,7 @@ INSERT INTO players VALUES('Daisy','mmk4578','34','550');
 INSERT INTO players VALUES('Dick','bvc4435','69','100');
 
 
-INSERT INTO developers VALUES('Steve,'USA',1997);
+INSERT INTO developers VALUES('Steve','USA',1997);
 
 INSERT INTO developers VALUES('Hobbins','USA',1999);
 INSERT INTO developers VALUES('Lerman','USA',2008);
