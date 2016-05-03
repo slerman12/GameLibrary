@@ -143,15 +143,15 @@ INSERT INTO runsOn VALUES ('Angry Birds', 'osx', 'mountain lion');
 
 
 INSERT INTO developsFor VALUES ('McGill', 'xbox', 'one')
-INSERT INTO developsFor VALUES('Hobbins,'playstation','4');
-INSERT INTO developsFor VALUES('Lerman,'xbox','360'););
-INSERT INTO developsFor VALUES('Nelson,'windows','10');
-INSERT INTO developsFor VALUES('Johnson,'nintendo','wii');
-INSERT INTO developsFor VALUES('Dorner,'ios','7.4');
-INSERT INTO developsFor VALUES('Fomenko,'nintendo','gamecube');
-INSERT INTO developsFor VALUES('McDonald,'playstation','2');
-INSERT INTO developsFor VALUES('Lundy,'osx','mountain lion');
-INSERT INTO developsFor VALUES('Dooms,'xbox','one');
+INSERT INTO developsFor VALUES('Hobbins','playstation','4');
+INSERT INTO developsFor VALUES('Lerman','xbox','360'););
+INSERT INTO developsFor VALUES('Nelson','windows','10');
+INSERT INTO developsFor VALUES('Johnson','nintendo','wii');
+INSERT INTO developsFor VALUES('Dorner','ios','7.4');
+INSERT INTO developsFor VALUES('Fomenko','nintendo','gamecube');
+INSERT INTO developsFor VALUES('McDonald','playstation','2');
+INSERT INTO developsFor VALUES('Lundy','osx','mountain lion');
+INSERT INTO developsFor VALUES('Dooms','xbox','one');
 
 
 
