@@ -44,7 +44,7 @@ require_once ('./dbsetup.php');
                 <hr>
                 <p>This site is a graphical interface into the heart of our game library. Visit Sam's list for an example of the kind of storage we implement. Play around, search, insert, update, delete, and view relationships at your leisure.</p>
                 <hr>
-                <p>While this team consists of Sam Lerman, Cinthia Lages, Rodrigo Santiago, and Yuen Lee, the entire project was programmed and created by Sam Lerman, whose efforts to convince his teammates to help him out ahead of the due date were met with disregard. However, he implemented the entire project by himself and his work can be seen in the "Sam's List" page. Please read the project design document for more info.</p>
+                <p>While this team consists of Sam Lerman, Cinthia Lages, Rodrigo Santiago, and Yuen Lee, the entire project was programmed and created by Sam Lerman, whose efforts to convince his teammates to help him out ahead of the due date were met with disregard. However, he implemented the entire project by himself and his work can be seen in the "Sam's List" page.</p>
             </div><!-- /.gamelibrary-post -->
 
         </div><!-- /.gamelibrary-main -->
