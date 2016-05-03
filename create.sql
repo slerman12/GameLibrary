@@ -43,7 +43,7 @@ CREATE TABLE usersPlatform(
     FOREIGN KEY player_name references players (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO players VALUESS(’Rob Thompson’,’add1753’,’23’,’120’);
+INSERT INTO players VALUES(’Rob Thompson’,’add1753’,’23’,’120’);
 
 INSERT INTO players VALUES(’Spencer Crittenden’,’fyi3356’,’50,’44’);
 
