@@ -142,7 +142,7 @@ function test_input($data) {
                     $attribute1 = '';
                     $attribute2 = '';
                     $listName = 'Cinthia';
-                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone and deserves to get at least 100% for implementing everything perfectly by himself. It was not his choice/fault that his team would not help and he does not deserve to be penalized after all of his hard effort';
+                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone. It was not his choice/fault that his team would not help.';
                 }
                 elseif ($who == 'Rodrigo'){
                     $relation = '';
@@ -150,7 +150,7 @@ function test_input($data) {
                     $attribute1 = '';
                     $attribute2 = '';
                     $listName = 'Rodrigo';
-                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone and deserves to get at least 100% for implementing everything perfectly by himself. It was not his choice/fault that his team would not help and he does not deserve to be penalized after all of his hard effort';
+                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone. It was not his choice/fault that his team would not help.';
                 }
                 elseif ($who == 'Lee'){
                     $relation = '';
@@ -158,7 +158,7 @@ function test_input($data) {
                     $attribute1 = '';
                     $attribute2 = '';
                     $listName = 'Lee';
-                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone and deserves to get at least 100% for implementing everything perfectly by himself. It was not his choice/fault that his team would not help and he does not deserve to be penalized after all of his hard effort.';
+                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone. It was not his choice/fault that his team would not help.';
                 }
                 else{
 
