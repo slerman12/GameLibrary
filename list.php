@@ -141,24 +141,24 @@ function test_input($data) {
                     $table = $db->query('');
                     $attribute1 = '';
                     $attribute2 = '';
-                    $listName = '';
-                    $listDesc = '';
+                    $listName = 'Cinthia';
+                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality.';
                 }
                 elseif ($who == 'Rodrigo'){
                     $relation = '';
                     $table = $db->query('');
                     $attribute1 = '';
                     $attribute2 = '';
-                    $listName = '';
-                    $listDesc = '';
+                    $listName = 'Rodrigo';
+                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality.';
                 }
                 elseif ($who == 'Lee'){
                     $relation = '';
                     $table = $db->query('');
                     $attribute1 = '';
                     $attribute2 = '';
-                    $listName = '';
-                    $listDesc = '';
+                    $listName = 'Lee';
+                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality.';
                 }
                 else{
 

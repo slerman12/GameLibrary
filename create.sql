@@ -45,7 +45,7 @@ CREATE TABLE usersPlatform(
 
 INSERT INTO players VALUES('Rob','add1753','23','120');
 
-INSERT INTO players VALUES('Spencer','fyi3356','50,'44');
+INSERT INTO players VALUES('Spencer','fyi3356','50','44');
 
 INSERT INTO players VALUES('Daisy','th557df','21','320');
 
