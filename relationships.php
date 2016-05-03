@@ -93,7 +93,7 @@ function test_input($data) {
                     while ($row = $runs_on->fetch()) {
                         echo        '<tr>',
                         '<td>Game</td>',
-                        '<td>',$row->name,'</td>',
+                        '<td>',$row->name,$row['name'], $row.name, $row->$name,'</td>',
                         '<td>Runs On</td>',
                         '</tr>';
                     }
