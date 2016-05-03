@@ -43,38 +43,39 @@ CREATE TABLE usersPlatform(
     FOREIGN KEY player_name references players (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO players VALUES(’Rob Thompson’,’add1753’,’23’,’120’);
+INSERT INTO players VALUES(’Rob',’add1753’,’23’,’120’);
 
-INSERT INTO players VALUES(’Spencer Crittenden’,’fyi3356’,’50,’44’);
+INSERT INTO players VALUES(’Spencer',’fyi3356’,’50,’44’);
 
-INSERT INTO players VALUES(’Daisy Duke’,’th557df’,’21’,’320’);
+INSERT INTO players VALUES(’Daisy',’th557df’,’21’,’320’);
 
-INSERT INTO players VALUES(’Tony Robinson’,’huh4578’,’77’,’820’);
+INSERT INTO players VALUES(’Tony',’huh4578’,’77’,’820’);
 
-INSERT INTO players VALUES(’Kelly Hart’,’Ilove556’,’54’,’650’);
+INSERT INTO players VALUES(’Kelly’,’Ilove556’,’54’,’650’);
 
-INSERT INTO players VALUES(’Emily Dickinson’,’hunk6678’,’78’,’800’);
+INSERT INTO players VALUES(’Emily’,’hunk6678’,’78’,’800’);
 
-INSERT INTO players VALUES(’Sam Leone’,’Klink4456’,’90’,’543’);
+INSERT INTO players VALUES(’Sam’,’Klink4456’,’90’,’543’);
 
-INSERT INTO players VALUES(’Sindy Doon’,’deff67890’,’51’,’267’);
+INSERT INTO players VALUES(’Sindy’,’deff67890’,’51’,’267’);
 
-INSERT INTO players VALUES(’Daisy Ridley’,’mmk4578’,’34’,’550’);
+INSERT INTO players VALUES(’Daisy’,’mmk4578’,’34’,’550’);
 
-INSERT INTO players VALUES('Dick Van Sycke’,’bvc4435’,’69’,’100’);
+INSERT INTO players VALUES('Dick’,’bvc4435’,’69’,’100’);
 
-INSERT INTO developers VALUES('Steve Bushlemi,’USA’,1997);
 
-INSERT INTO developers VALUES('Steve Hobbins,’USA’,1999);
-INSERT INTO developers VALUES('Sam Lerman,’USA’,2008);
-INSERT INTO developers VALUES('Natalie Nelson,’Australia’,2000);
-INSERT INTO developers VALUES('Ivett Johnson,’Russia’,1997);
-INSERT INTO developers VALUES('Michael Dorner,’USA’,1995);
-INSERT INTO developers VALUES('Michele Fomenko,’Ukraine’,1995);
-INSERT INTO developers VALUES('Martha McDonald,’USA’,1996);
-INSERT INTO developers VALUES('Patricia Lundy,’USA’,1996);
-INSERT INTO developers VALUES('James McGill,’USA’,2000);
-INSERT INTO developers VALUES('Syndy Dooms,’USA’,2000);
+INSERT INTO developers VALUES('Steve,’USA’,1997);
+
+INSERT INTO developers VALUES('Hobbins,’USA’,1999);
+INSERT INTO developers VALUES('Lerman,’USA’,2008);
+INSERT INTO developers VALUES('Nelson,’Australia’,2000);
+INSERT INTO developers VALUES('Johnson,’Russia’,1997);
+INSERT INTO developers VALUES('Dorner,’USA’,1995);
+INSERT INTO developers VALUES('Fomenko,’Ukraine’,1995);
+INSERT INTO developers VALUES('McDonald,’USA’,1996);
+INSERT INTO developers VALUES('Lundy,’USA’,1996);
+INSERT INTO developers VALUES('McGill,’USA’,2000);
+INSERT INTO developers VALUES('Dooms,’USA’,2000);
 
 
 INSERT INTO games VALUES('Call of Duty');
@@ -141,38 +142,38 @@ INSERT INTO runsOn VALUES ('Angry Birds', 'osx', 'mountain lion');
 
 
 
-INSERT INTO developsFor VALUES ('James McGill', 'xbox', 'one')
-INSERT INTO developsFor VALUES('Steve Hobbins,’playstation’,'4');
-INSERT INTO developsFor VALUES('Sam Lerman,’xbox’,'360'););
-INSERT INTO developsFor VALUES('Natalie Nelson,’windows’,'10');
-INSERT INTO developsFor VALUES('Ivett Johnson,’nintendo’,'wii');
-INSERT INTO developsFor VALUES('Michael Dorner,’ios’,'7.4');
-INSERT INTO developsFor VALUES('Michele Fomenko,’nintendo’,'gamecube');
-INSERT INTO developsFor VALUES('Martha McDonald,’playstation’,'2');
-INSERT INTO developsFor VALUES('Patricia Lundy,’osx’,'mountain lion');
-INSERT INTO developsFor VALUES('Syndy Dooms,’xbox’,'one');
+INSERT INTO developsFor VALUES ('McGill', 'xbox', 'one')
+INSERT INTO developsFor VALUES('Hobbins,’playstation’,'4');
+INSERT INTO developsFor VALUES('Lerman,’xbox’,'360'););
+INSERT INTO developsFor VALUES('Nelson,’windows’,'10');
+INSERT INTO developsFor VALUES('Johnson,’nintendo’,'wii');
+INSERT INTO developsFor VALUES('Dorner,’ios’,'7.4');
+INSERT INTO developsFor VALUES('Fomenko,’nintendo’,'gamecube');
+INSERT INTO developsFor VALUES('McDonald,’playstation’,'2');
+INSERT INTO developsFor VALUES('Lundy,’osx’,'mountain lion');
+INSERT INTO developsFor VALUES('Dooms,’xbox’,'one');
 
 
 
 
-INSERT INTO usersPlatform VALUES ('Sindy Doon', 'xbox', 'one');
+INSERT INTO usersPlatform VALUES ('Sindy', 'xbox', 'one');
 
-INSERT INTO usersPlatform VALUESS(’Rob Thompson’,’playstation’,’4’);
+INSERT INTO usersPlatform VALUESS(’Rob',’playstation’,’4’);
 
-INSERT INTO usersPlatform VALUES(’Spencer Crittenden’,’ios’,’7.4');
+INSERT INTO usersPlatform VALUES(’Spencer',’ios’,’7.4');
 
-INSERT INTO usersPlatform VALUES(’Daisy Duke’,’windows’,’10’);
+INSERT INTO usersPlatform VALUES(’Daisy',’windows’,’10’);
 
-INSERT INTO usersPlatform VALUES(’Tony Robinson’,’nintendo’,’wii’);
+INSERT INTO usersPlatform VALUES(’Tony',’nintendo’,’wii’);
 
-INSERT INTO usersPlatform VALUES(’Kelly Hart’,’osx’,’mountain lion’);
+INSERT INTO usersPlatform VALUES(’Kelly',’osx’,’mountain lion’);
 
-INSERT INTO usersPlatform VALUES(’Emily Dickinson’,’xbox’,’360’);
+INSERT INTO usersPlatform VALUES(’Emily',’xbox’,’360’);
 
-INSERT INTO usersPlatform VALUES(’Sam Leone’,’nintendo’,’gamecube’);
+INSERT INTO usersPlatform VALUES(’Sam',’nintendo’,’gamecube’);
 
-INSERT INTO usersPlatform VALUES(’Sindy Doon’,’playstation’,’2’);
+INSERT INTO usersPlatform VALUES(’Sindy',’playstation’,’2’);
 
-INSERT INTO usersPlatform VALUES(’Daisy Ridley’,’playstation’,’4’);
+INSERT INTO usersPlatform VALUES(’Daisy',’playstation’,’4’);
 
-INSERT INTO usersPlatform VALUES('Dick Van Sycke’,’xbox’,’360’);
+INSERT INTO usersPlatform VALUES('Dick',’xbox’,’360’);
