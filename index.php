@@ -40,11 +40,11 @@ require_once ('./dbsetup.php');
             <div class="gamelibrary-post">
                 <h2 class="gamelibrary-post-title"><i class="fa fa-home" aria-hidden="true"></i> Home Page</h2>
                 <hr>
-                <p>Gamelibrary description goes here. For best appearance, make it three paragraphs as shown here with this placeholder text. A few sentences per paragraph should be good, at around this length.</p>
+                <p>Game Library is an intricate database for storing all of your gaming-related information, from the state of your games to the high scores of each player to use platforms--everything you need, all in one place..</p>
                 <hr>
-                <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+                <p>This site is a graphical interface into the heart of our game library. Visit Sam's list for an example of the kind of storage we implement. Play around, search, insert, update, delete, and view relationships at your leisure.</p>
                 <hr>
-                <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel by Sam Lerman, Cinthia Lages, Rodrigo Santiago, and Yuen Lee.</p>
+                <p>While this team consists of Sam Lerman, Cinthia Lages, Rodrigo Santiago, and Yuen Lee, the entire project was programmed and created by Sam Lerman, whose efforts to convince his teammates to help him out ahead of the due date failed. However, he implemented the entire project himself and his work can be seen in teh prject design doc below.</p>
             </div><!-- /.gamelibrary-post -->
 
         </div><!-- /.gamelibrary-main -->
