@@ -1,5 +1,5 @@
 CREATE TABLE games(
-  name VARCHAR(40)
+  name VARCHAR(40) PRIMARY KEY
 );
 
 CREATE TABLE players (
