@@ -20,7 +20,7 @@ CREATE TABLE runsOn(
   game_name VARCHAR(40),
   plat_name VARCHAR(40),
 plat_version VARCHAR(40),
-    PRIMARY KEY (game_name, plat_version, player_name),
+    PRIMARY KEY (game_name, plat_version, game_name),
     FOREIGN KEY(game_name) REFERENCES games(name)  ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(plat_name, plat_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -29,7 +29,7 @@ CREATE TABLE developsFor(
   developer_name VARCHAR(40),
   plat_name VARCHAR(40),
 plat_version VARCHAR(40),
-    PRIMARY KEY (developer_name, plat_version, player_name),
+    PRIMARY KEY (developer_name, plat_version, developer_name),
     FOREIGN KEY(developer_name) REFERENCES developers(name) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(plat_name, plat_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE
 );
