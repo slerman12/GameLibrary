@@ -21,8 +21,8 @@ CREATE TABLE runsOn(
   plat_name VARCHAR(40),
 plat_version VARCHAR(40),
     PRIMARY KEY (game_name, plat_version, player_name),
-    FOREIGN KEY(game_name) REFERENCES games(name)  ON DELETE CASCADE UPDATE CASCADE,
-    FOREIGN KEY(plat_name, play_version) REFERENCES platforms(name, version) ON DELETE CASCADE UPDATE CASCADE
+    FOREIGN KEY(game_name) REFERENCES games(name)  ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(plat_name, play_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE developsFor(
@@ -30,8 +30,8 @@ CREATE TABLE developsFor(
   plat_name VARCHAR(40),
 plat_version VARCHAR(40),
     PRIMARY KEY (developer_name, plat_version, player_name),
-    FOREIGN KEY(developer_name) REFERENCES developers(name) ON DELETE CASCADE UPDATE CASCADE,
-    FOREIGN KEY(plat_name, play_version) REFERENCES platforms(name, version) ON DELETE CASCADE UPDATE CASCADE
+    FOREIGN KEY(developer_name) REFERENCES developers(name) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(plat_name, play_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE usersPlatform(
@@ -39,8 +39,8 @@ CREATE TABLE usersPlatform(
     plat_name VARCHAR(40) NOT NULL,
     plat_version VARCHAR(40) NOT NULL,
     PRIMARY KEY (plat_name, plat_version, player_name),
-    FOREIGN KEY(plat_name, play_version) REFERENCES platforms(name, version) ON DELETE CASCADE UPDATE CASCADE,
-    FOREIGN KEY player_name references players (name) ON DELETE CASCADE UPDATE CASCADE
+    FOREIGN KEY(plat_name, play_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY player_name references players (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO players VALUESS(’Rob Thompson’,’add1753’,’23’,’120’);
