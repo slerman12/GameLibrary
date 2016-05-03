@@ -158,7 +158,7 @@ INSERT INTO developsFor VALUES('Dooms','xbox','one');
 
 INSERT INTO usersPlatform VALUES ('Sindy', 'xbox', 'one');
 
-INSERT INTO usersPlatform VALUESS('Rob','playstation','4');
+INSERT INTO usersPlatform VALUES('Rob','playstation','4');
 
 INSERT INTO usersPlatform VALUES('Spencer','ios','7.4');
 

@@ -85,7 +85,7 @@ function test_input($data) {
                     while ($row = $users_platform->fetch()) {
                         echo        '<tr>',
                         '<td>Player</td>',
-                        '<td>',$row->$name,' </td>',
+                        '<td>',$row->name,' </td>',
                         '<td>Uses</td>',
                         '</tr>';
                     }
