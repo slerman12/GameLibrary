@@ -53,7 +53,7 @@ function test_input($data) {
                     $attribute1 = test_input($_GET['name']);
                     $attribute2 = test_input($_GET['version']);
 
-                    $users_platform = $db->prepare('SELECT players.name AS name FROM usersPlatform, players WHERE usersPlatform.plat_name=:name AND usersPlatform.plat_version=:version AND usersPlatform.player_id=players.id');
+                    $users_platform = $db->prepare('SELECT players.name AS name FROM usersPlatform, players WHERE usersPlatform.plat_name=:name AND usersPlatform.plat_version=:version AND usersPlatform.player_name=players.name');
                     $users_platform->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $users_platform->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $users_platform->execute();
@@ -63,7 +63,7 @@ function test_input($data) {
                     $runs_on->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $runs_on->execute();
 
-                    $develops_for = $db->prepare('SELECT developers.name AS name FROM developsFor, developers WHERE developsFor.plat_name=:name AND developsFor.plat_version=:version AND developsFor.developer_id=developers.id');
+                    $develops_for = $db->prepare('SELECT developers.name AS name FROM developsFor, developers WHERE developsFor.plat_name=:name AND developsFor.plat_version=:version AND developsFor.developer_name=developers.name');
                     $develops_for->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $develops_for->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $develops_for->execute();
