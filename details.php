@@ -63,7 +63,6 @@ function test_input($data) {
                     $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
                     $stmt->bindParam(':version', test_input($_POST['version']), PDO::PARAM_STR);
                     $stmt->bindParam(':type', test_input($_POST['type']), PDO::PARAM_STR);
-// use PARAM_STR although a number
                     $stmt->bindParam(':speed', test_input($_POST['speed']), PDO::PARAM_STR);
                     $stmt->bindParam(':popularity', test_input($_POST['popularity']), PDO::PARAM_STR);
 
