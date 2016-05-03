@@ -35,7 +35,7 @@ plat_version VARCHAR(40),
 );
 
 CREATE TABLE usersPlatform(
-    player_name INT NOT NULL,
+    player_name VARCHAR(40) NOT NULL,
     plat_name VARCHAR(40) NOT NULL,
     plat_version VARCHAR(40) NOT NULL,
     PRIMARY KEY (plat_name, plat_version, player_name),
