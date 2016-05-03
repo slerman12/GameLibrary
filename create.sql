@@ -38,7 +38,7 @@ CREATE TABLE usersPlatform(
     player_name INT NOT NULL,
     plat_name VARCHAR(40) NOT NULL,
     plat_version VARCHAR(40) NOT NULL,
-    PRIMARY KEY (plat_name, plat_version, plat_name),
+    PRIMARY KEY (plat_name, plat_version, player_name),
     FOREIGN KEY(plat_name, plat_version) REFERENCES platforms(name, version) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (player_name) REFERENCES players (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
