@@ -86,7 +86,7 @@ function test_input($data) {
 
             function delete($db)
             {
-                if($who = 'Sam') {
+                if(test_input($_GET['who']) == 'Sam') {
                     $sql = "DELETE FROM platforms WHERE name=:name AND
                                                 version=:version";
                     $stmt = $db->prepare($sql);
@@ -94,20 +94,20 @@ function test_input($data) {
                     $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
                     $stmt->execute();
                 }
-                elseif($who == 'Cinthia'){
+                elseif(test_input($_GET['who']) == 'Cinthia'){
                     $sql = "DELETE FROM developers WHERE name=:name";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
                     $stmt->execute();
                 }
-                elseif($who == 'Rodrigo'){
+                elseif(test_input($_GET['who']) == 'Rodrigo'){
                     $sql = "DELETE FROM players WHERE name=:name";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
                     $stmt->execute();
 
                 }
-                elseif($who == 'Lee'){
+                elseif(test_input($_GET['who']) == 'Lee'){
                     $sql = "DELETE FROM games WHERE name=:name";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);

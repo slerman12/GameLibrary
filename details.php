@@ -46,7 +46,7 @@ function test_input($data) {
 
             function insert($db)
             {
-                if($who = 'Sam') {
+                if(test_input($_GET['who']) == 'Sam') {
                     $sql = "INSERT INTO platforms( name,
                                                 version,
                                                 type,
@@ -68,7 +68,7 @@ function test_input($data) {
 
                     $stmt->execute();
                 }
-                elseif($who == 'Cinthia'){
+                elseif(test_input($_GET['who']) == 'Cinthia'){
                     $sql = "INSERT INTO developers( name,
                                                 country,
                                                 year_founded) VALUES (
@@ -85,7 +85,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif($who == 'Rodrigo'){
+                elseif(test_input($_GET['who']) == 'Rodrigo'){
                     $sql = "INSERT INTO players( name,
                                                 password,
                                                 friends_count,
@@ -105,9 +105,8 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif($who == 'Lee'){
-                    $sql = "INSERT INTO players( name) VALUES (
-                                                :name)";
+                elseif(test_input($_GET['who']) == 'Lee'){
+                    $sql = "INSERT INTO games( name) VALUES (:name)";
 
                     $stmt = $db->prepare($sql);
 
@@ -123,7 +122,7 @@ function test_input($data) {
 
             function update($db)
             {
-                if($who = 'Sam') {
+                if(test_input($_GET['who']) == 'Sam') {
 
                     $sql = "UPDATE platforms SET name = :name, version = :version, type = :type, speed = :speed, popularity = :popularity WHERE name=:nameOriginal AND version=:versionOriginal";
 
@@ -139,7 +138,7 @@ function test_input($data) {
 
                     $stmt->execute();
                 }
-                elseif($who == 'Cinthia'){
+                elseif(test_input($_GET['who']) == 'Cinthia'){
 
                     $sql = "UPDATE developers SET name = :name, country = :country, year_founded = :year_founded WHERE name=:nameOriginal";
 
@@ -153,7 +152,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif($who == 'Rodrigo'){
+                elseif(test_input($_GET['who']) == 'Rodrigo'){
 
                     $sql = "UPDATE players SET name = :name, password = :country, friends_count = :friends_count, game_hours = :game_hours WHERE name=:nameOriginal";
 
@@ -168,7 +167,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif($who == 'Lee'){
+                elseif(test_input($_GET['who']) == 'Lee'){
 
                     $sql = "UPDATE games SET name = :name WHERE name=:nameOriginal";
 
