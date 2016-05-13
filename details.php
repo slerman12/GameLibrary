@@ -154,7 +154,7 @@ function test_input($data) {
                 }
                 elseif(test_input($_GET['who']) == 'Rodrigo'){
 
-                    $sql = "UPDATE players SET name = :name, password = :country, friends_count = :friends_count, game_hours = :game_hours WHERE name=:nameOriginal";
+                    $sql = "UPDATE players SET name = :name, password = :password, friends_count = :friends_count, game_hours = :game_hours WHERE name=:nameOriginal";
 
                     $stmt = $db->prepare($sql);
 
