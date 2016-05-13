@@ -29,10 +29,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=platforms">Platforms</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=developers">Developers</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=players">Players</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=games">Games</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=platforms">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=developers">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=players">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=games">Games</a>
             </div>
         </nav>
     </div>
@@ -46,7 +46,7 @@ function test_input($data) {
 
             function insert($db)
             {
-                if(test_input($_GET['who']) == 'platforms') {
+                if(test_input($_GET['entity']) == 'platforms') {
                     $sql = "INSERT INTO platforms( name,
                                                 version,
                                                 type,
@@ -68,7 +68,7 @@ function test_input($data) {
 
                     $stmt->execute();
                 }
-                elseif(test_input($_GET['who']) == 'developers'){
+                elseif(test_input($_GET['entity']) == 'developers'){
                     $sql = "INSERT INTO developers( name,
                                                 country,
                                                 year_founded) VALUES (
@@ -85,7 +85,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'players'){
+                elseif(test_input($_GET['entity']) == 'players'){
                     $sql = "INSERT INTO players( name,
                                                 password,
                                                 friends_count,
@@ -105,7 +105,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'games'){
+                elseif(test_input($_GET['entity']) == 'games'){
                     $sql = "INSERT INTO games( name) VALUES (:name)";
 
                     $stmt = $db->prepare($sql);
@@ -122,7 +122,7 @@ function test_input($data) {
 
             function update($db)
             {
-                if(test_input($_GET['who']) == 'platforms') {
+                if(test_input($_GET['entity']) == 'platforms') {
 
                     $sql = "UPDATE platforms SET name = :name, version = :version, type = :type, speed = :speed, popularity = :popularity WHERE name=:nameOriginal AND version=:versionOriginal";
 
@@ -138,7 +138,7 @@ function test_input($data) {
 
                     $stmt->execute();
                 }
-                elseif(test_input($_GET['who']) == 'developers'){
+                elseif(test_input($_GET['entity']) == 'developers'){
 
                     $sql = "UPDATE developers SET name = :name, country = :country, year_founded = :year_founded WHERE name=:nameOriginal";
 
@@ -152,7 +152,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'players'){
+                elseif(test_input($_GET['entity']) == 'players'){
 
                     $sql = "UPDATE players SET name = :name, password = :password, friends_count = :friends_count, game_hours = :game_hours WHERE name=:nameOriginal";
 
@@ -167,7 +167,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'games'){
+                elseif(test_input($_GET['entity']) == 'games'){
 
                     $sql = "UPDATE games SET name = :name WHERE name=:nameOriginal";
 
@@ -185,7 +185,7 @@ function test_input($data) {
             }
 
             try {
-                $who = test_input($_GET['who']);
+                $entity = test_input($_GET['entity']);
 
                 //if insert or update
                 if($_POST){
@@ -196,19 +196,19 @@ function test_input($data) {
                         update($db);
                     }
 
-                    if($who=='platforms') {
+                    if($entity=='platforms') {
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['version']);
                     }
-                    elseif($who=='developers'){
+                    elseif($entity=='developers'){
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['country']);
                     }
-                    elseif($who=='players'){
+                    elseif($entity=='players'){
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['password']);
                     }
-                    elseif($who=='games'){
+                    elseif($entity=='games'){
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['name']);
                     }
@@ -217,19 +217,19 @@ function test_input($data) {
                     }
                 }
                 else{
-                    if($who=='platforms') {
+                    if($entity=='platforms') {
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['version']);
                     }
-                    elseif($who=='developers'){
+                    elseif($entity=='developers'){
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['country']);
                     }
-                    elseif($who=='players'){
+                    elseif($entity=='players'){
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['password']);
                     }
-                    elseif($who=='games'){
+                    elseif($entity=='games'){
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['name']);
                     }
@@ -239,7 +239,7 @@ function test_input($data) {
                 }
 
                 //customize details page
-                if ($who == 'platforms'){
+                if ($entity == 'platforms'){
                     $detailsName = 'Platform Details';
                     $relation = 'platforms';
 
@@ -248,7 +248,7 @@ function test_input($data) {
                     $tuple->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $tuple->execute();
                 }
-                elseif ($who == 'developers'){
+                elseif ($entity == 'developers'){
                     $detailsName = 'Developers';
                     $relation = 'developers';
 
@@ -256,7 +256,7 @@ function test_input($data) {
                     $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
-                elseif ($who == 'players'){
+                elseif ($entity == 'players'){
                     $detailsName = 'Players';
                     $relation = 'players';
 
@@ -264,7 +264,7 @@ function test_input($data) {
                     $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
-                elseif ($who == 'games'){
+                elseif ($entity == 'games'){
                     $detailsName = 'Games';
                     $relation = 'games';
 
@@ -334,7 +334,7 @@ function test_input($data) {
             <div class="modal-body">
 
                 <?php
-                    echo    '<form action="details.php?who=',$who,'" method="post"><div class="table-responsive list-table">',
+                    echo    '<form action="details.php?entity=',$entity,'" method="post"><div class="table-responsive list-table">',
                     '<table class="table table-striped table-hover">',
                     '<thead>',
                     '<tr>',

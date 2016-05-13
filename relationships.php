@@ -29,10 +29,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=platforms">Platforms</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=developers">Developers</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=players">Players</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=games">Games</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=platforms">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=developers">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=players">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=games">Games</a>
             </div>
         </nav>
     </div>
@@ -44,10 +44,10 @@ function test_input($data) {
             <?php
 
             try {
-                $who = test_input($_GET['who']);
+                $entity = test_input($_GET['entity']);
 
                 //customize details page
-                if ($who == 'platforms'){
+                if ($entity == 'platforms'){
                     $relationshipName = 'Platform Relationships';
 
                     $attribute1 = test_input($_GET['name']);
@@ -110,7 +110,7 @@ function test_input($data) {
                     '</table>',
                     '</div>';
                 }
-                elseif ($who == 'developers'){
+                elseif ($entity == 'developers'){
                     $relationshipName = '';
 
                     $attribute1 = test_input($_GET['']);
@@ -121,7 +121,7 @@ function test_input($data) {
                     $table->bindValue(':key2', $attribute2, PDO::PARAM_STR);
                     $table->execute();
                 }
-                elseif ($who == 'players'){
+                elseif ($entity == 'players'){
                     $relationshipName = '';
 
                     $attribute1 = test_input($_GET['']);
@@ -132,7 +132,7 @@ function test_input($data) {
                     $table->bindValue(':key2', $attribute2, PDO::PARAM_STR);
                     $table->execute();
                 }
-                elseif ($who == 'games'){
+                elseif ($entity == 'games'){
                     $relationshipName = '';
 
                     $attribute1 = test_input($_GET['']);

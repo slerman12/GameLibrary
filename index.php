@@ -24,10 +24,10 @@ require_once ('./dbsetup.php');
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=platforms">Platforms</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=developers">Developers</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=players">Players</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=games">Games</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=platforms">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=developers">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=players">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?entity=games">Games</a>
             </div>
         </nav>
     </div>
@@ -53,10 +53,10 @@ require_once ('./dbsetup.php');
             <div class="sidebar-module">
                 <h4>Lists</h4>
                 <ol class="list-unstyled">
-                    <li><a href="./list.php?who=platforms">Platforms</a></li>
-                    <li><a href="./list.php?who=developers">Developers</a></li>
-                    <li><a href="./list.php?who=players">Players</a></li>
-                    <li><a href="./list.php?who=games">Games</a></li>
+                    <li><a href="./list.php?entity=platforms">Platforms</a></li>
+                    <li><a href="./list.php?entity=developers">Developers</a></li>
+                    <li><a href="./list.php?entity=players">Players</a></li>
+                    <li><a href="./list.php?entity=games">Games</a></li>
                 </ol>
             </div>
         </div><!-- /.gamelibrary-sidebar -->
