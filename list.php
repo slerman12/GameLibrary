@@ -39,10 +39,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Platforms</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Developers</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Players</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Games</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=platforms">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=developers">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=players">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=games">Games</a>
             </div>
         </nav>
     </div>
@@ -74,7 +74,7 @@ function test_input($data) {
                     '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?who=',$_GET['who'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
                     '<td>', $row->$attribute1, '</td>',
                     '<td>', $row->$attribute2, '</td>',
-                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm"'; if($_GET['who']!=='Sam'){echo 'disabled';} echo '>Relationships</button></form></td>',
+                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm"'; if($_GET['who']!=='platforms'){echo 'disabled';} echo '>Relationships</button></form></td>',
                     '<td><form style="margin:0; padding:0;" action="details.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
                     '</tr>';
                     $i++;
@@ -86,7 +86,7 @@ function test_input($data) {
 
             function delete($db)
             {
-                if(test_input($_GET['who']) == 'Sam') {
+                if(test_input($_GET['who']) == 'platforms') {
                     $sql = "DELETE FROM platforms WHERE name=:name AND
                                                 version=:version";
                     $stmt = $db->prepare($sql);
@@ -94,20 +94,20 @@ function test_input($data) {
                     $stmt->bindParam(':version', $_POST['version'], PDO::PARAM_STR);
                     $stmt->execute();
                 }
-                elseif(test_input($_GET['who']) == 'Cinthia'){
+                elseif(test_input($_GET['who']) == 'developers'){
                     $sql = "DELETE FROM developers WHERE name=:name";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
                     $stmt->execute();
                 }
-                elseif(test_input($_GET['who']) == 'Rodrigo'){
+                elseif(test_input($_GET['who']) == 'players'){
                     $sql = "DELETE FROM players WHERE name=:name";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'Lee'){
+                elseif(test_input($_GET['who']) == 'games'){
                     $sql = "DELETE FROM games WHERE name=:name";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
@@ -130,7 +130,7 @@ function test_input($data) {
                 }
 
                 // Select table query and display customized list
-                if ($who == 'Sam'){
+                if ($who == 'platforms'){
                     $relation = 'platforms';
                     if(isset($_GET['search'])){
 //                        $search = test_input($_GET['search']);
@@ -147,7 +147,7 @@ function test_input($data) {
                     $listName = 'Platforms';
                     $listDesc = 'Search for platforms, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong>Below are the 15 most popular.</strong>';
                 }
-                elseif ($who == 'Cinthia'){
+                elseif ($who == 'developers'){
                     $relation = 'developers';
                     if(isset($_GET['search'])){
 //                        $search = test_input($_GET['search']);
@@ -164,7 +164,7 @@ function test_input($data) {
                     $listName = 'Developers';
                     $listDesc = 'Search for developers, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong></strong>';
                 }
-                elseif ($who == 'Rodrigo'){
+                elseif ($who == 'players'){
                     $relation = 'players';
                     if(isset($_GET['search'])){
 //                        $search = test_input($_GET['search']);
@@ -181,7 +181,7 @@ function test_input($data) {
                     $listName = 'Players';
                     $listDesc = 'Search for players, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong></strong>';
                 }
-                elseif ($who == 'Lee'){
+                elseif ($who == 'games'){
                     $relation = 'games';
                     if(isset($_GET['search'])){
 //                        $search = test_input($_GET['search']);

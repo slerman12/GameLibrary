@@ -29,10 +29,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Platforms</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Developers</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Players</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Games</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=platforms">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=developers">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=players">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=games">Games</a>
             </div>
         </nav>
     </div>
@@ -46,7 +46,7 @@ function test_input($data) {
 
             function insert($db)
             {
-                if(test_input($_GET['who']) == 'Sam') {
+                if(test_input($_GET['who']) == 'platforms') {
                     $sql = "INSERT INTO platforms( name,
                                                 version,
                                                 type,
@@ -68,7 +68,7 @@ function test_input($data) {
 
                     $stmt->execute();
                 }
-                elseif(test_input($_GET['who']) == 'Cinthia'){
+                elseif(test_input($_GET['who']) == 'developers'){
                     $sql = "INSERT INTO developers( name,
                                                 country,
                                                 year_founded) VALUES (
@@ -85,7 +85,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'Rodrigo'){
+                elseif(test_input($_GET['who']) == 'players'){
                     $sql = "INSERT INTO players( name,
                                                 password,
                                                 friends_count,
@@ -105,7 +105,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'Lee'){
+                elseif(test_input($_GET['who']) == 'games'){
                     $sql = "INSERT INTO games( name) VALUES (:name)";
 
                     $stmt = $db->prepare($sql);
@@ -122,7 +122,7 @@ function test_input($data) {
 
             function update($db)
             {
-                if(test_input($_GET['who']) == 'Sam') {
+                if(test_input($_GET['who']) == 'platforms') {
 
                     $sql = "UPDATE platforms SET name = :name, version = :version, type = :type, speed = :speed, popularity = :popularity WHERE name=:nameOriginal AND version=:versionOriginal";
 
@@ -138,7 +138,7 @@ function test_input($data) {
 
                     $stmt->execute();
                 }
-                elseif(test_input($_GET['who']) == 'Cinthia'){
+                elseif(test_input($_GET['who']) == 'developers'){
 
                     $sql = "UPDATE developers SET name = :name, country = :country, year_founded = :year_founded WHERE name=:nameOriginal";
 
@@ -152,7 +152,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'Rodrigo'){
+                elseif(test_input($_GET['who']) == 'players'){
 
                     $sql = "UPDATE players SET name = :name, password = :password, friends_count = :friends_count, game_hours = :game_hours WHERE name=:nameOriginal";
 
@@ -167,7 +167,7 @@ function test_input($data) {
                     $stmt->execute();
 
                 }
-                elseif(test_input($_GET['who']) == 'Lee'){
+                elseif(test_input($_GET['who']) == 'games'){
 
                     $sql = "UPDATE games SET name = :name WHERE name=:nameOriginal";
 
@@ -196,19 +196,19 @@ function test_input($data) {
                         update($db);
                     }
 
-                    if($who=='Sam') {
+                    if($who=='platforms') {
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['version']);
                     }
-                    elseif($who=='Cinthia'){
+                    elseif($who=='developers'){
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['country']);
                     }
-                    elseif($who=='Rodrigo'){
+                    elseif($who=='players'){
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['password']);
                     }
-                    elseif($who=='Lee'){
+                    elseif($who=='games'){
                         $attribute1 = test_input($_POST['name']);
                         $attribute2 = test_input($_POST['name']);
                     }
@@ -217,19 +217,19 @@ function test_input($data) {
                     }
                 }
                 else{
-                    if($who=='Sam') {
+                    if($who=='platforms') {
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['version']);
                     }
-                    elseif($who=='Cinthia'){
+                    elseif($who=='developers'){
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['country']);
                     }
-                    elseif($who=='Rodrigo'){
+                    elseif($who=='players'){
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['password']);
                     }
-                    elseif($who=='Lee'){
+                    elseif($who=='games'){
                         $attribute1 = test_input($_GET['name']);
                         $attribute2 = test_input($_GET['name']);
                     }
@@ -239,7 +239,7 @@ function test_input($data) {
                 }
 
                 //customize details page
-                if ($who == 'Sam'){
+                if ($who == 'platforms'){
                     $detailsName = 'Platform Details';
                     $relation = 'platforms';
 
@@ -248,7 +248,7 @@ function test_input($data) {
                     $tuple->bindValue(':version', $attribute2, PDO::PARAM_STR);
                     $tuple->execute();
                 }
-                elseif ($who == 'Cinthia'){
+                elseif ($who == 'developers'){
                     $detailsName = 'Developers';
                     $relation = 'developers';
 
@@ -256,7 +256,7 @@ function test_input($data) {
                     $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
-                elseif ($who == 'Rodrigo'){
+                elseif ($who == 'players'){
                     $detailsName = 'Players';
                     $relation = 'players';
 
@@ -264,7 +264,7 @@ function test_input($data) {
                     $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
-                elseif ($who == 'Lee'){
+                elseif ($who == 'games'){
                     $detailsName = 'Games';
                     $relation = 'games';
 
