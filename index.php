@@ -24,10 +24,10 @@ require_once ('./dbsetup.php');
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Games</a>
             </div>
         </nav>
     </div>
@@ -42,9 +42,9 @@ require_once ('./dbsetup.php');
                 <hr>
                 <p>Game Library is an intricate database for storing all of your gaming-related information, from the state of your games to the high scores of each player to the user platforms--everything you need, all in one place.</p>
                 <hr>
-                <p>This site is a graphical interface into the heart of our game library. Visit Sam's list for an example of the kind of storage we implement. Play around, search, insert, update, delete, and view relationships at your leisure.</p>
+                <p>This site is a graphical interface into the heart of our game library. Visit Platforms for an example of the kind of storage we implement. Play around, search, insert, update, delete, and view relationships at your leisure.</p>
                 <hr>
-                <p>While this team consists of Sam Lerman, Cinthia Lages, Rodrigo Santiago, and Yuen Lee, the entire project was programmed and created by Sam Lerman, whose efforts to convince his teammates to help him out ahead of the due date were met with disregard. However, he implemented the entire project by himself and his hard work can be seen in the "Sam's List" page.</p>
+                <p>Game Library is a database for video game players. It was designed to help players keep track of scores, states, and stats for their favorite titles. The site is driven by a developer and player community.</p>
             </div><!-- /.gamelibrary-post -->
 
         </div><!-- /.gamelibrary-main -->
@@ -53,10 +53,10 @@ require_once ('./dbsetup.php');
             <div class="sidebar-module">
                 <h4>Lists</h4>
                 <ol class="list-unstyled">
-                    <li><a href="./list.php?who=Sam">Sam - Platforms</a></li>
-                    <li><a href="./list.php?who=Cinthia">Cinthia - RelationName</a></li>
-                    <li><a href="./list.php?who=Rodrigo">Rodrigo - RelationName</a></li>
-                    <li><a href="./list.php?who=Lee">Lee - RelationName</a></li>
+                    <li><a href="./list.php?who=Sam">Platforms</a></li>
+                    <li><a href="./list.php?who=Cinthia">Developers</a></li>
+                    <li><a href="./list.php?who=Rodrigo">Players</a></li>
+                    <li><a href="./list.php?who=Lee">Games</a></li>
                 </ol>
             </div>
         </div><!-- /.gamelibrary-sidebar -->

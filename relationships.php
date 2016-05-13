@@ -29,10 +29,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Games</a>
             </div>
         </nav>
     </div>

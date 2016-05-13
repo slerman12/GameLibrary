@@ -39,10 +39,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Games</a>
             </div>
         </nav>
     </div>
@@ -74,7 +74,7 @@ function test_input($data) {
                     '<td><form class="deleteBtn" style="margin:0; padding:0;" action="list.php?who=',$_GET['who'],'" method="post"><input type="hidden" name="delete" value="1"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><i class="fa fa-times text-danger"></i></form></td>',
                     '<td>', $row->$attribute1, '</td>',
                     '<td>', $row->$attribute2, '</td>',
-                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm">Relationships</button></form></td>',
+                    '<td><form style="margin:0; padding:0;" action="relationships.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-info btn-sm"'; if($_GET['who']!=='Sam'){echo 'disabled';} echo '>Relationships</button></form></td>',
                     '<td><form style="margin:0; padding:0;" action="details.php" method="get"><input type="hidden" name="who" value="',$_GET['who'],'"><input type="hidden" name="',$attribute1,'" value="',$row->$attribute1,'"><input type="hidden" name="',$attribute2,'" value="',$row->$attribute2,'"><button type="submit" class="btn btn-primary btn-sm">Details/Edit</button></form></td>',
                     '</tr>';
                     $i++;
@@ -95,12 +95,23 @@ function test_input($data) {
                     $stmt->execute();
                 }
                 elseif($who == 'Cinthia'){
-
+                    $sql = "DELETE FROM developers WHERE name=:name";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
+                    $stmt->execute();
                 }
                 elseif($who == 'Rodrigo'){
+                    $sql = "DELETE FROM players WHERE name=:name";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
+                    $stmt->execute();
 
                 }
                 elseif($who == 'Lee'){
+                    $sql = "DELETE FROM games WHERE name=:name";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
+                    $stmt->execute();
 
                 }
                 else{
@@ -137,28 +148,55 @@ function test_input($data) {
                     $listDesc = 'Search for platforms, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong>Below are the 15 most popular.</strong>';
                 }
                 elseif ($who == 'Cinthia'){
-                    $relation = '';
-                    $table = $db->query('');
-                    $attribute1 = '';
-                    $attribute2 = '';
-                    $listName = 'Cinthia';
-                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone. It was not his choice/fault that his team would not help.';
+                    $relation = 'developers';
+                    if(isset($_GET['search'])){
+//                        $search = test_input($_GET['search']);
+//                        $stmt = 'SELECT name, version, type, speed, popularity FROM platforms WHERE name = '.$search.' OR version = '.$search.' OR type = '.$search.' OR speed = '.$search.' OR popularity = '.$search.' ORDER BY popularity DESC';
+//                        $table = $db->query($stmt);
+                        $table = $db->prepare("SELECT name, country, year_founded FROM developers WHERE (LOWER(:search) ILIKE '%' || LOWER(name) || '%') OR (LOWER(:search) ILIKE '%' || LOWER(country) || '%') OR (LOWER(:search) ILIKE '%' || LOWER(year_founded::text))");
+                        $table->bindValue(':search', test_input($_GET['search']), PDO::PARAM_STR);
+                        $table->execute();
+                    }else{
+                        $table = $db->query('SELECT name, country, year_founded FROM developers LIMIT 15');
+                    }
+                    $attribute1 = 'name';
+                    $attribute2 = 'country';
+                    $listName = 'Developers';
+                    $listDesc = 'Search for developers, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong></strong>';
                 }
                 elseif ($who == 'Rodrigo'){
-                    $relation = '';
-                    $table = $db->query('');
-                    $attribute1 = '';
-                    $attribute2 = '';
-                    $listName = 'Rodrigo';
-                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone. It was not his choice/fault that his team would not help.';
+                    $relation = 'players';
+                    if(isset($_GET['search'])){
+//                        $search = test_input($_GET['search']);
+//                        $stmt = 'SELECT name, version, type, speed, popularity FROM platforms WHERE name = '.$search.' OR version = '.$search.' OR type = '.$search.' OR speed = '.$search.' OR popularity = '.$search.' ORDER BY popularity DESC';
+//                        $table = $db->query($stmt);
+                        $table = $db->prepare("SELECT name, password, friends_count, game_hours FROM players WHERE (LOWER(:search) ILIKE '%' || LOWER(name) || '%') OR (LOWER(:search) ILIKE '%' || LOWER(password) || '%') OR (LOWER(:search) ILIKE '%' || LOWER(friends_count::text)) OR (LOWER(:search) ILIKE '%' || LOWER(game_hours::text))");
+                        $table->bindValue(':search', test_input($_GET['search']), PDO::PARAM_STR);
+                        $table->execute();
+                    }else{
+                        $table = $db->query('SELECT name, password, friends_count, game_hours FROM players LIMIT 15');
+                    }
+                    $attribute1 = 'name';
+                    $attribute2 = 'password';
+                    $listName = 'Players';
+                    $listDesc = 'Search for players, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong></strong>';
                 }
                 elseif ($who == 'Lee'){
-                    $relation = '';
-                    $table = $db->query('');
-                    $attribute1 = '';
-                    $attribute2 = '';
-                    $listName = 'Lee';
-                    $listDesc = 'Did not contribute to coding website. See project design document. See Sams list for a complete list with full functionality. Sam worked alone. It was not his choice/fault that his team would not help.';
+                    $relation = 'games';
+                    if(isset($_GET['search'])){
+//                        $search = test_input($_GET['search']);
+//                        $stmt = 'SELECT name, version, type, speed, popularity FROM platforms WHERE name = '.$search.' OR version = '.$search.' OR type = '.$search.' OR speed = '.$search.' OR popularity = '.$search.' ORDER BY popularity DESC';
+//                        $table = $db->query($stmt);
+                        $table = $db->prepare("SELECT name FROM games WHERE (LOWER(:search) ILIKE '%' || LOWER(name) || '%')");
+                        $table->bindValue(':search', test_input($_GET['search']), PDO::PARAM_STR);
+                        $table->execute();
+                    }else{
+                        $table = $db->query('SELECT name FROM games LIMIT 15');
+                    }
+                    $attribute1 = 'name';
+                    $attribute2 = ' ';
+                    $listName = 'Games';
+                    $listDesc = 'Search for games, view related entities, edit, or show details. Use the plus button to insert, the red X button to delete. <strong></strong>';
                 }
                 else{
 

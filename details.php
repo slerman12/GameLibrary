@@ -29,10 +29,10 @@ function test_input($data) {
         <nav class="gamelibrary-nav">
             <a class="gamelibrary-nav-item active" href="./index.php">Game <i style="font-size: 18px;" class="fa fa-gamepad" aria-hidden="true"></i> Library  </a>
             <div class="pull-right">
-                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Sam's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Cinthia's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Rodrigo's List</a>
-                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Lee's List</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Sam">Platforms</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Cinthia">Developers</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Rodrigo">Players</a>
+                <a class="gamelibrary-nav-item" href="./list.php?who=Lee">Games</a>
             </div>
         </nav>
     </div>
@@ -69,12 +69,51 @@ function test_input($data) {
                     $stmt->execute();
                 }
                 elseif($who == 'Cinthia'){
+                    $sql = "INSERT INTO developers( name,
+                                                country,
+                                                year_founded) VALUES (
+                                                :name,
+                                                :country,
+                                                :year_founded)";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam(':country', test_input($_POST['country']), PDO::PARAM_STR);
+                    $stmt->bindParam(':year_founded', test_input($_POST['year_founded']), PDO::PARAM_STR);
+
+                    $stmt->execute();
 
                 }
                 elseif($who == 'Rodrigo'){
+                    $sql = "INSERT INTO players( name,
+                                                password,
+                                                friends_count,
+                                                game_hours) VALUES (
+                                                :name,
+                                                :password,
+                                                :friends_count,
+                                                :game_hours)";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam(':password', test_input($_POST['password']), PDO::PARAM_STR);
+                    $stmt->bindParam(':friends_count', test_input($_POST['friends_count']), PDO::PARAM_STR);
+                    $stmt->bindParam(':game_hours', test_input($_POST['game_hours']), PDO::PARAM_STR);
+
+                    $stmt->execute();
 
                 }
                 elseif($who == 'Lee'){
+                    $sql = "INSERT INTO players( name) VALUES (
+                                                :name)";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam(':name', test_input($_POST['name']), PDO::PARAM_STR);
+
+                    $stmt->execute();
 
                 }
                 else{
@@ -102,11 +141,43 @@ function test_input($data) {
                 }
                 elseif($who == 'Cinthia'){
 
+                    $sql = "UPDATE developers SET name = :name, country = :country, year_founded = :year_founded WHERE name=:nameOriginal";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam('name',  test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam('country',  test_input($_POST['country']), PDO::PARAM_STR);
+                    $stmt->bindParam('year_founded', test_input($_POST['year_founded']), PDO::PARAM_STR);
+                    $stmt->bindParam('nameOriginal',  test_input($_POST['attribute1']), PDO::PARAM_STR);
+
+                    $stmt->execute();
+
                 }
                 elseif($who == 'Rodrigo'){
 
+                    $sql = "UPDATE players SET name = :name, password = :country, friends_count = :friends_count, game_hours = :game_hours WHERE name=:nameOriginal";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam('name',  test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam('password',  test_input($_POST['password']), PDO::PARAM_STR);
+                    $stmt->bindParam('friends_count', test_input($_POST['friends_count']), PDO::PARAM_STR);
+                    $stmt->bindParam('game_hours', test_input($_POST['game_hours']), PDO::PARAM_STR);
+                    $stmt->bindParam('nameOriginal',  test_input($_POST['attribute1']), PDO::PARAM_STR);
+
+                    $stmt->execute();
+
                 }
                 elseif($who == 'Lee'){
+
+                    $sql = "UPDATE games SET name = :name WHERE name=:nameOriginal";
+
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam('name',  test_input($_POST['name']), PDO::PARAM_STR);
+                    $stmt->bindParam('nameOriginal',  test_input($_POST['attribute1']), PDO::PARAM_STR);
+
+                    $stmt->execute();
 
                 }
                 else{
@@ -131,16 +202,16 @@ function test_input($data) {
                         $attribute2 = test_input($_POST['version']);
                     }
                     elseif($who=='Cinthia'){
-                        $attribute1 = test_input($_POST['']);
-                        $attribute2 = test_input($_POST['']);
+                        $attribute1 = test_input($_POST['name']);
+                        $attribute2 = test_input($_POST['country']);
                     }
                     elseif($who=='Rodrigo'){
-                        $attribute1 = test_input($_POST['']);
-                        $attribute2 = test_input($_POST['']);
+                        $attribute1 = test_input($_POST['name']);
+                        $attribute2 = test_input($_POST['password']);
                     }
                     elseif($who=='Lee'){
-                        $attribute1 = test_input($_POST['']);
-                        $attribute2 = test_input($_POST['']);
+                        $attribute1 = test_input($_POST['name']);
+                        $attribute2 = test_input($_POST['name']);
                     }
                     else{
 
@@ -152,16 +223,16 @@ function test_input($data) {
                         $attribute2 = test_input($_GET['version']);
                     }
                     elseif($who=='Cinthia'){
-                        $attribute1 = test_input($_GET['']);
-                        $attribute2 = test_input($_GET['']);
+                        $attribute1 = test_input($_GET['name']);
+                        $attribute2 = test_input($_GET['country']);
                     }
                     elseif($who=='Rodrigo'){
-                        $attribute1 = test_input($_GET['']);
-                        $attribute2 = test_input($_GET['']);
+                        $attribute1 = test_input($_GET['name']);
+                        $attribute2 = test_input($_GET['password']);
                     }
                     elseif($who=='Lee'){
-                        $attribute1 = test_input($_GET['']);
-                        $attribute2 = test_input($_GET['']);
+                        $attribute1 = test_input($_GET['name']);
+                        $attribute2 = test_input($_GET['name']);
                     }
                     else{
 
@@ -179,30 +250,27 @@ function test_input($data) {
                     $tuple->execute();
                 }
                 elseif ($who == 'Cinthia'){
-                    $detailsName = '';
-                    $relation = '';
+                    $detailsName = 'Developers';
+                    $relation = 'developers';
 
-                    $tuple = $db->prepare('');
-                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
+                    $tuple = $db->prepare('SELECT name, country, year_founded FROM developers WHERE name=:name');
+                    $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
                 elseif ($who == 'Rodrigo'){
-                    $detailsName = '';
-                    $relation = '';
+                    $detailsName = 'Players';
+                    $relation = 'players';
 
-                    $tuple = $db->prepare('');
-                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
+                    $tuple = $db->prepare('SELECT name, password, friends_count, game_hours FROM players WHERE name=:name');
+                    $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
                 elseif ($who == 'Lee'){
-                    $detailsName = '';
-                    $relation = '';
+                    $detailsName = 'Games';
+                    $relation = 'games';
 
-                    $tuple = $db->prepare('');
-                    $tuple->bindValue(':key1', $attribute1, PDO::PARAM_STR);
-                    $tuple->bindValue(':key2', $attribute2, PDO::PARAM_STR);
+                    $tuple = $db->prepare('SELECT name FROM games WHERE name=:name');
+                    $tuple->bindValue(':name', $attribute1, PDO::PARAM_STR);
                     $tuple->execute();
                 }
                 else{
